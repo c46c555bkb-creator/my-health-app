@@ -1,11 +1,576 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Health App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Health Coach</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(160deg, #fff0f7, #f1efff);
+            color: #29243a;
+            min-height: 100vh;
+        }
+
+        .app {
+            max-width: 480px;
+            margin: auto;
+            padding: 22px 18px 100px;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .hello {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .name {
+            font-size: 27px;
+            font-weight: 800;
+            margin-top: 3px;
+        }
+
+        .profile {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff7eb3, #8e7dff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            box-shadow: 0 8px 20px rgba(120, 90, 180, 0.2);
+        }
+
+        /* MAIN HEALTH CARD */
+
+        .health-card {
+            background: linear-gradient(135deg, #ff70aa, #8c7cff);
+            color: white;
+            padding: 23px;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(130, 90, 190, 0.25);
+            margin-bottom: 20px;
+        }
+
+        .health-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .health-title {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .health-score {
+            font-size: 42px;
+            font-weight: 800;
+            margin-top: 8px;
+        }
+
+        .status {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .health-message {
+            margin-top: 18px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* STATS */
+
+        .section-title {
+            font-size: 19px;
+            font-weight: 800;
+            margin: 25px 0 13px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.85);
+            padding: 18px;
+            border-radius: 22px;
+            box-shadow: 0 8px 25px rgba(80,60,120,0.08);
+        }
+
+        .stat-icon {
+            font-size: 24px;
+        }
+
+        .stat-name {
+            color: #777;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        /* COACH */
+
+        .coach-card {
+            background: white;
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 8px 25px rgba(80,60,120,0.09);
+        }
+
+        .coach-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .coach-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 15px;
+            background: #eeeaff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .coach-name {
+            font-weight: 800;
+        }
+
+        .coach-text {
+            margin-top: 15px;
+            color: #555;
+            line-height: 1.55;
+            font-size: 14px;
+        }
+
+        /* BUTTON */
+
+        .action-button {
+            width: 100%;
+            border: none;
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: 18px;
+            background: #29243a;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .action-button:active {
+            transform: scale(0.97);
+        }
+
+        /* WATER */
+
+        .water-card {
+            background: linear-gradient(135deg, #dff7ff, #e9e3ff);
+            padding: 20px;
+            border-radius: 24px;
+            margin-top: 15px;
+        }
+
+        .water-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .water-number {
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .water-button {
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* GOAL */
+
+        .goal-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 24px;
+            margin-top: 15px;
+        }
+
+        .goal-progress {
+            height: 9px;
+            background: #eee;
+            border-radius: 20px;
+            margin-top: 14px;
+            overflow: hidden;
+        }
+
+        .goal-fill {
+            width: 68%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff70aa, #8c7cff);
+            border-radius: 20px;
+        }
+
+        /* BOTTOM NAV */
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 30px);
+            max-width: 450px;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 10px 30px rgba(50,40,80,0.15);
+        }
+
+        .nav-item {
+            border: none;
+            background: none;
+            font-size: 11px;
+            color: #888;
+            cursor: pointer;
+            padding: 7px;
+        }
+
+        .nav-item span {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: #8c63ff;
+            font-weight: 700;
+        }
+
+        /* POPUP */
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 40px);
+            max-width: 420px;
+            background: white;
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .popup h2 {
+            margin-bottom: 10px;
+        }
+
+        .popup p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .close-button {
+            margin-top: 18px;
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 15px;
+            background: #29243a;
+            color: white;
+            font-weight: 700;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Hello! 👋</h1>
-    <p>My health app is coming to life! 💗</p>
+
+<div class="app">
+
+    <div class="header">
+
+        <div>
+            <div class="hello">Good morning ☀️</div>
+            <div class="name">Hey Havi! 👋</div>
+        </div>
+
+        <div class="profile">💗</div>
+
+    </div>
+
+
+    <div class="health-card">
+
+        <div class="health-top">
+
+            <div>
+                <div class="health-title">
+                    Your day so far
+                </div>
+
+                <div class="health-score">
+                    78
+                </div>
+            </div>
+
+            <div class="status">
+                ● Doing well
+            </div>
+
+        </div>
+
+        <div class="health-message">
+            Your sleep looks decent and your activity is on track.
+            A little movement + more water would make today even better. ✨
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        Today's snapshot
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat-card">
+            <div class="stat-icon">👟</div>
+            <div class="stat-name">Steps</div>
+            <div class="stat-value">4,280</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">😴</div>
+            <div class="stat-name">Sleep</div>
+            <div class="stat-value">7h 20m</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">❤️</div>
+            <div class="stat-name">Heart rate</div>
+            <div class="stat-value">72 bpm</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-name">Energy</div>
+            <div class="stat-value">Good</div>
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        🤖 Your Coach
+    </div>
+
+
+    <div class="coach-card">
+
+        <div class="coach-header">
+
+            <div class="coach-icon">
+                🤖
+            </div>
+
+            <div>
+                <div class="coach-name">
+                    Your personal coach
+                </div>
+
+                <div style="font-size:12px;color:#888;">
+                    Based on your day
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="coach-text">
+            You don't need a huge workout today.
+            Let's start with a 15-minute walk, drink some water,
+            and then I'll help you decide what comes next. 💗
+        </div>
+
+
+        <button class="action-button" onclick="showPlan()">
+            What should I do right now? ✨
+        </button>
+
+    </div>
+
+
+    <div class="section-title">
+        💧 Hydration
+    </div>
+
+
+    <div class="water-card">
+
+        <div class="water-row">
+
+            <div>
+                <div style="font-size:13px;color:#777;">
+                    Today's water
+                </div>
+
+                <div class="water-number">
+                    <span id="water">5</span> / 8 glasses
+                </div>
+            </div>
+
+            <button class="water-button" onclick="addWater()">
+                +
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        🎯 Today's goal
+    </div>
+
+
+    <div class="goal-card">
+
+        <div style="display:flex;justify-content:space-between;">
+            <span>Move your body</span>
+            <strong>68%</strong>
+        </div>
+
+        <div class="goal-progress">
+            <div class="goal-fill"></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+    <button class="nav-item active">
+        <span>🏠</span>
+        Today
+    </button>
+
+    <button class="nav-item">
+        <span>📊</span>
+        Progress
+    </button>
+
+    <button class="nav-item">
+        <span>🍎</span>
+        Food
+    </button>
+
+    <button class="nav-item">
+        <span>🏃</span>
+        Activity
+    </button>
+
+    <button class="nav-item">
+        <span>🤖</span>
+        Coach
+    </button>
+
+</div>
+
+
+<!-- POPUP -->
+
+<div class="popup" id="planPopup">
+
+    <h2>✨ Your next move</h2>
+
+    <p>
+        Based on your current energy and activity,
+        start with a 15-minute easy walk.
+        Then drink one glass of water and check back in.
+        Your plan can change depending on how you feel. 💗
+    </p>
+
+    <button class="close-button" onclick="closePlan()">
+        Got it 💗
+    </button>
+
+</div>
+
+
+<script>
+
+    let water = 5;
+
+    function addWater() {
+
+        if (water < 8) {
+            water++;
+            document.getElementById("water").innerText = water;
+        }
+
+    }
+
+
+    function showPlan() {
+
+        document.getElementById("planPopup").style.display = "block";
+
+    }
+
+
+    function closePlan() {
+
+        document.getElementById("planPopup").style.display = "none";
+
+    }
+
+</script>
+
 </body>
 </html>

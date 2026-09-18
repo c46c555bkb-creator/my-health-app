@@ -2,2033 +2,2443 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7c5cff">
 <title>My Health Coach</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 :root{
- --pink:#ff70ad;
- --purple:#8173ff;
- --ink:#28243a;
- --muted:#777487;
- --bg:#f8f5ff;
- --card:#fff;
- --line:#eeeaf5;
- --green:#45c58b;
- --yellow:#ffb84d;
- --red:#ef6b72;
+  --bg:#f8f7ff;
+  --card:#ffffff;
+  --text:#17152a;
+  --muted:#77738d;
+  --primary:#7457ff;
+  --secondary:#ff6fae;
+  --mint:#45d7b0;
+  --yellow:#ffc857;
+  --danger:#ff6b7a;
+  --line:#ece9f5;
+  --shadow:0 16px 45px rgba(68,49,130,.10);
+  --radius:24px;
 }
+
+*{box-sizing:border-box}
+
 body{
- font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
- background:linear-gradient(145deg,#fff2f8,#f2efff);
- color:var(--ink);
- min-height:100vh;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 0%,#eee9ff 0,transparent 28%),
+    radial-gradient(circle at 100% 20%,#ffe8f2 0,transparent 25%),
+    var(--bg);
+  color:var(--text);
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+
+button,input,textarea,select{font:inherit}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:95px;
+}
+
 .hidden{display:none!important}
-.app{max-width:500px;margin:auto;min-height:100vh;padding-bottom:95px}
-.screen{padding:20px 18px}
+
+/* ---------- HEADER ---------- */
+
+.topbar{
+  padding:22px 20px 10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  font-size:20px;
+}
+
+.logoBubble{
+  width:38px;
+  height:38px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#7457ff,#ff6fae);
+  color:white;
+  box-shadow:0 8px 20px rgba(116,87,255,.25);
+}
+
+.iconBtn{
+  width:42px;
+  height:42px;
+  border-radius:15px;
+  background:white;
+  box-shadow:var(--shadow);
+  font-size:18px;
+}
+
+/* ---------- SCREENS ---------- */
+
+.screen{
+  padding:8px 18px 20px;
+}
+
+.screenTitle{
+  margin:12px 2px 5px;
+  font-size:29px;
+  line-height:1.1;
+  letter-spacing:-1px;
+}
+
+.subtitle{
+  color:var(--muted);
+  margin:0 2px 20px;
+  line-height:1.5;
+}
+
+/* ---------- CARDS ---------- */
+
 .card{
- background:rgba(255,255,255,.9);
- border:1px solid rgba(255,255,255,.8);
- border-radius:25px;
- box-shadow:0 10px 30px rgba(65,48,110,.08);
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:19px;
+  margin-bottom:15px;
 }
-.gradient{
- background:linear-gradient(135deg,#ff70ad,#8173ff);
- color:white;
-}
-.small{font-size:12px;color:var(--muted)}
-.muted{color:var(--muted)}
-h1{font-size:30px;line-height:1.1}
-h2{font-size:23px}
-h3{font-size:17px}
-p{line-height:1.5}
 
-/* ONBOARDING */
-.onboarding{
- min-height:100vh;
- padding:28px 20px;
- display:flex;
- flex-direction:column;
- justify-content:space-between;
+.cardTitle{
+  font-weight:850;
+  font-size:17px;
 }
-.brand{
- font-weight:900;
- font-size:19px;
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
 }
-.brand span{color:var(--pink)}
-.progress{
- height:7px;
- background:#eee8f5;
- border-radius:20px;
- margin:20px 0 30px;
- overflow:hidden;
+
+.gradientCard{
+  color:white;
+  background:linear-gradient(135deg,#7457ff,#9c75ff 52%,#ff75ae);
+  border:0;
 }
-.progress-fill{
- height:100%;
- width:12.5%;
- background:linear-gradient(90deg,var(--pink),var(--purple));
- transition:.3s;
+
+.gradientCard .small{color:rgba(255,255,255,.82)}
+
+/* ---------- TODAY HERO ---------- */
+
+.greeting{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:6px;
 }
-.onboard-content{flex:1}
-.eyebrow{
- color:#8b78e8;
- font-weight:800;
- font-size:13px;
- margin-bottom:12px;
+
+.hero{
+  padding:22px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.35),transparent 25%),
+    linear-gradient(135deg,#7658ff,#a76bff 55%,#ff70ad);
+  color:white;
+  box-shadow:0 22px 50px rgba(116,87,255,.22);
+  margin-bottom:15px;
+  position:relative;
+  overflow:hidden;
 }
-.question{margin-bottom:12px}
-.subquestion{
- color:var(--muted);
- margin:8px 0 24px;
- font-size:14px;
+
+.hero h2{
+  margin:0 0 8px;
+  font-size:28px;
+  letter-spacing:-1px;
 }
-.field{
- margin-bottom:16px;
+
+.hero p{
+  margin:0;
+  line-height:1.55;
+  color:rgba(255,255,255,.9);
 }
-.field label{
- display:block;
- font-size:13px;
- font-weight:700;
- margin-bottom:7px;
+
+.heroEmoji{
+  position:absolute;
+  right:-5px;
+  bottom:-25px;
+  font-size:100px;
+  opacity:.16;
 }
-input,select,textarea{
- width:100%;
- border:1px solid var(--line);
- background:white;
- border-radius:15px;
- padding:14px;
- outline:none;
- color:var(--ink);
+
+/* ---------- NEED NOW ---------- */
+
+.needCard{
+  padding:18px;
 }
-textarea{min-height:90px;resize:vertical}
-.choice-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+
+.needHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
 }
-.choice{
- border:1px solid var(--line);
- background:white;
- border-radius:17px;
- padding:14px 12px;
- text-align:left;
- transition:.15s;
+
+.needHeader span{
+  font-size:24px;
 }
-.choice.selected{
- border-color:#9a8cff;
- background:#f1eeff;
- transform:translateY(-1px);
+
+.needGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
 }
-.choice strong{display:block;margin-bottom:3px}
-.choice span{font-size:12px;color:var(--muted)}
-.chips{
- display:flex;
- flex-wrap:wrap;
- gap:9px;
+
+.needBtn{
+  background:#f6f3ff;
+  border:1px solid #ece7ff;
+  border-radius:17px;
+  padding:14px 11px;
+  text-align:left;
+  transition:.2s;
 }
-.chip{
- border:1px solid var(--line);
- background:white;
- border-radius:100px;
- padding:10px 13px;
- font-size:13px;
+
+.needBtn:hover{
+  transform:translateY(-2px);
+  background:#eeeaff;
 }
-.chip.selected{
- background:#eeeaff;
- border-color:#9788ff;
+
+.needBtn strong{
+  display:block;
+  font-size:14px;
+  margin-bottom:3px;
 }
-.onboard-bottom{
- padding-top:20px;
- display:flex;
- gap:10px;
+
+.needBtn span{
+  font-size:12px;
+  color:var(--muted);
 }
+
+/* ---------- STATS ---------- */
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.stat{
+  background:white;
+  border-radius:22px;
+  padding:17px;
+  box-shadow:var(--shadow);
+}
+
+.statIcon{
+  font-size:23px;
+  margin-bottom:8px;
+}
+
+.statValue{
+  font-size:23px;
+  font-weight:900;
+}
+
+.statLabel{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
+}
+
+.progressTrack{
+  height:9px;
+  background:#eeeaf6;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+.progressFill{
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,#7457ff,#ff70ad);
+}
+
+/* ---------- BUTTONS ---------- */
+
 .primary{
- flex:1;
- border:0;
- border-radius:17px;
- padding:16px;
- color:white;
- background:var(--ink);
- font-weight:800;
+  width:100%;
+  padding:15px;
+  border-radius:17px;
+  color:white;
+  background:linear-gradient(135deg,#7457ff,#a06bff);
+  font-weight:800;
+  box-shadow:0 10px 25px rgba(116,87,255,.2);
 }
+
 .secondary{
- border:1px solid var(--line);
- background:white;
- border-radius:17px;
- padding:16px;
- font-weight:700;
+  width:100%;
+  padding:14px;
+  border-radius:17px;
+  background:#f1eeff;
+  color:#6548dc;
+  font-weight:800;
 }
 
-/* HEADER */
-.header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:20px;
-}
-.greeting{font-size:13px;color:var(--muted)}
-.name{font-size:26px;font-weight:900;margin-top:3px}
-.avatar{
- width:48px;height:48px;border-radius:50%;
- background:linear-gradient(135deg,var(--pink),var(--purple));
- display:flex;align-items:center;justify-content:center;
- color:white;font-size:22px;
+.textBtn{
+  background:none;
+  color:#7457ff;
+  font-weight:750;
 }
 
-/* MODE */
-.mode-strip{
- display:flex;gap:8px;overflow:auto;padding-bottom:5px;
-}
-.mode{
- white-space:nowrap;border:0;background:white;
- border-radius:100px;padding:9px 13px;font-size:12px;
- box-shadow:0 4px 15px rgba(70,50,110,.06);
-}
-.mode.active{background:#29243a;color:white}
+/* ---------- MOOD ---------- */
 
-/* HEALTH */
-.health-card{
- padding:22px;border-radius:27px;margin-bottom:14px;
- box-shadow:0 15px 35px rgba(120,90,180,.22);
-}
-.health-top{display:flex;justify-content:space-between;align-items:flex-start}
-.score{font-size:46px;font-weight:900;margin-top:5px}
-.status{
- background:rgba(255,255,255,.2);
- border-radius:100px;padding:8px 12px;font-size:12px;
-}
-.health-message{margin-top:14px;font-size:14px;line-height:1.55}
-
-/* STATS */
-.section-head{
- display:flex;justify-content:space-between;align-items:center;
- margin:22px 0 11px;
-}
-.section-head h3{font-size:18px}
-.link{background:none;border:0;color:#806ff2;font-weight:700;font-size:12px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{padding:16px;border-radius:21px}
-.stat-icon{font-size:22px}
-.stat-name{font-size:12px;color:var(--muted);margin-top:8px}
-.stat-value{font-size:19px;font-weight:900;margin-top:3px}
-
-/* COACH */
-.coach{
- padding:19px;
-}
-.coach-head{display:flex;gap:11px;align-items:center}
-.bot{
- width:43px;height:43px;border-radius:15px;
- background:#eeeaff;display:flex;align-items:center;justify-content:center;
- font-size:21px;
-}
-.coach-title{font-weight:900}
-.coach-message{margin-top:14px;font-size:14px;color:#555;line-height:1.55}
-.why{
- margin-top:12px;
- background:#f7f5ff;
- padding:11px 13px;
- border-radius:14px;
- font-size:12px;
- color:#625b76;
-}
-.action{
- width:100%;border:0;border-radius:16px;padding:15px;
- background:var(--ink);color:white;font-weight:800;margin-top:15px;
+.moodGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
-/* WATER */
-.water{
- padding:18px;
- background:linear-gradient(135deg,#e2f9ff,#eee9ff);
-}
-.water-row{display:flex;justify-content:space-between;align-items:center}
-.water-number{font-size:25px;font-weight:900;margin-top:3px}
-.plus{
- border:0;background:white;width:43px;height:43px;
- border-radius:50%;font-size:23px;
+.moodBtn{
+  padding:15px 10px;
+  background:#faf9fd;
+  border:2px solid transparent;
+  border-radius:18px;
+  text-align:left;
 }
 
-/* GOAL */
-.goal{padding:18px}
-.goal-top{display:flex;justify-content:space-between}
-.progressbar{height:9px;background:#eee;border-radius:20px;margin-top:13px;overflow:hidden}
-.fill{
- height:100%;width:68%;
- background:linear-gradient(90deg,var(--pink),var(--purple));
- border-radius:20px;
+.moodBtn.selected{
+  border-color:#7457ff;
+  background:#f0edff;
 }
 
-/* BOTTOM */
-.nav{
- position:fixed;z-index:5;bottom:13px;left:50%;
- transform:translateX(-50%);
- width:calc(100% - 28px);max-width:470px;
- background:rgba(255,255,255,.94);
- backdrop-filter:blur(15px);
- border-radius:25px;padding:9px;
- display:flex;justify-content:space-around;
- box-shadow:0 10px 35px rgba(50,40,80,.16);
-}
-.nav button{
- border:0;background:none;color:#8b8795;
- font-size:10px;padding:5px;
-}
-.nav button span{display:block;font-size:20px;margin-bottom:3px}
-.nav button.active{color:#806ff2;font-weight:800}
-
-/* PAGES */
-.page-title{font-size:28px;font-weight:900;margin-bottom:5px}
-.page-sub{color:var(--muted);font-size:14px;margin-bottom:20px}
-.panel{padding:19px;margin-bottom:12px}
-
-/* FOOD */
-.meal{
- display:flex;align-items:center;gap:12px;
- padding:14px 0;border-bottom:1px solid var(--line);
-}
-.meal:last-child{border-bottom:0}
-.meal-icon{
- width:45px;height:45px;border-radius:15px;
- background:#fff1d9;display:flex;align-items:center;justify-content:center;
- font-size:22px;
-}
-.meal-info{flex:1}
-.meal-name{font-weight:800;font-size:14px}
-.meal-note{font-size:12px;color:var(--muted);margin-top:3px}
-
-/* ACTIVITY */
-.activity-big{
- text-align:center;padding:25px;
-}
-.ring{
- width:155px;height:155px;border-radius:50%;
- margin:5px auto 17px;
- background:conic-gradient(var(--purple) 0 68%,#eee 68% 100%);
- display:flex;align-items:center;justify-content:center;
-}
-.ring-inner{
- width:125px;height:125px;border-radius:50%;
- background:white;display:flex;flex-direction:column;
- align-items:center;justify-content:center;
-}
-.ring-number{font-size:31px;font-weight:900}
-
-/* PROGRESS */
-.metric-row{
- display:flex;justify-content:space-between;
- padding:13px 0;border-bottom:1px solid var(--line);
-}
-.metric-row:last-child{border:0}
-
-/* REWARDS */
-.reward{
- display:flex;align-items:center;gap:12px;
- padding:14px 0;border-bottom:1px solid var(--line);
-}
-.reward-icon{
- width:47px;height:47px;border-radius:16px;
- background:#fff0f6;display:flex;align-items:center;justify-content:center;
- font-size:22px;
-}
-.reward-info{flex:1}
-.reward-name{font-weight:800}
-.reward-cost{font-size:12px;color:var(--muted);margin-top:3px}
-.redeem{
- border:0;background:#29243a;color:white;
- padding:9px 11px;border-radius:12px;font-size:11px;
+.moodEmoji{
+  font-size:25px;
+  display:block;
+  margin-bottom:7px;
 }
 
-/* CHAT */
-.chat{
- display:flex;flex-direction:column;min-height:calc(100vh - 40px);
+/* ---------- CHIPS ---------- */
+
+.chips{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:4px;
 }
-.chat-head{
- display:flex;align-items:center;gap:11px;margin-bottom:15px;
+
+.chip{
+  flex:0 0 auto;
+  background:#f1eeff;
+  color:#644bd2;
+  padding:9px 13px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:750;
 }
-.chat-messages{
- flex:1;overflow:auto;padding:5px 0 15px;
+
+/* ---------- INPUTS ---------- */
+
+.input,
+textarea,
+select{
+  width:100%;
+  border:1px solid var(--line);
+  background:#faf9fd;
+  border-radius:16px;
+  padding:13px 14px;
+  outline:none;
+  color:var(--text);
 }
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.input:focus,
+textarea:focus,
+select:focus{
+  border-color:#9b87ff;
+  background:white;
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:750;
+  margin-bottom:7px;
+}
+
+/* ---------- COACH CHAT ---------- */
+
+.chatBox{
+  min-height:360px;
+  max-height:470px;
+  overflow-y:auto;
+  padding:5px 2px;
+}
+
 .message{
- max-width:84%;padding:12px 14px;border-radius:18px;
- margin-bottom:10px;font-size:14px;line-height:1.5;
+  display:flex;
+  margin:10px 0;
 }
-.message.coach{
- background:white;border-bottom-left-radius:5px;
- box-shadow:0 5px 18px rgba(60,45,100,.07);
-}
+
 .message.user{
- margin-left:auto;background:var(--ink);color:white;
- border-bottom-right-radius:5px;
+  justify-content:flex-end;
 }
-.chat-input{
- display:flex;gap:8px;background:white;
- padding:8px;border-radius:19px;
- box-shadow:0 7px 25px rgba(50,40,80,.12);
+
+.bubble{
+  max-width:86%;
+  padding:12px 14px;
+  border-radius:18px;
+  line-height:1.48;
+  font-size:14px;
 }
-.chat-input input{border:0;padding:10px}
+
+.coach .bubble{
+  background:#f0edff;
+  border-bottom-left-radius:5px;
+}
+
+.user .bubble{
+  background:linear-gradient(135deg,#7457ff,#9c72ff);
+  color:white;
+  border-bottom-right-radius:5px;
+}
+
+.coachAvatar{
+  width:32px;
+  height:32px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#7457ff,#ff70ad);
+  display:grid;
+  place-items:center;
+  margin-right:7px;
+  color:white;
+  flex-shrink:0;
+}
+
+.chatInput{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.chatInput input{
+  flex:1;
+}
+
 .send{
- width:45px;border:0;border-radius:14px;
- background:linear-gradient(135deg,var(--pink),var(--purple));
- color:white;font-size:19px;
+  width:50px;
+  border-radius:16px;
+  background:#7457ff;
+  color:white;
+  font-size:18px;
 }
 
-/* MODAL */
-.modal-bg{
- position:fixed;z-index:20;inset:0;
- background:rgba(30,25,45,.45);
- display:flex;align-items:flex-end;justify-content:center;
- padding:15px;
+/* ---------- BOTTOM NAV ---------- */
+
+.bottomNav{
+  position:fixed;
+  z-index:20;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(490px,calc(100% - 22px));
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(18px);
+  border:1px solid #eeeaf6;
+  box-shadow:0 15px 40px rgba(44,33,90,.15);
+  border-radius:24px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  padding:8px;
 }
+
+.navBtn{
+  background:none;
+  color:#918da2;
+  padding:8px 2px;
+  border-radius:16px;
+  font-size:11px;
+}
+
+.navBtn span{
+  display:block;
+  font-size:20px;
+  margin-bottom:2px;
+}
+
+.navBtn.active{
+  color:#7457ff;
+  background:#f0edff;
+  font-weight:800;
+}
+
+/* ---------- MODAL ---------- */
+
 .modal{
- width:100%;max-width:480px;background:white;
- border-radius:27px;padding:22px;
- max-height:88vh;overflow:auto;
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:rgba(20,16,40,.45);
+  backdrop-filter:blur(8px);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding:12px;
 }
-.close{
- float:right;border:0;background:#f3f0f7;
- width:34px;height:34px;border-radius:50%;
-}
-.plan-item{
- padding:14px 0;border-bottom:1px solid var(--line);
-}
-.plan-item:last-child{border:0}
 
-/* TOAST */
-.toast{
- position:fixed;z-index:30;top:20px;left:50%;
- transform:translate(-50%,-120px);
- background:#29243a;color:white;
- padding:13px 17px;border-radius:15px;
- font-size:13px;transition:.3s;
- box-shadow:0 10px 30px rgba(0,0,0,.18);
+.modalBox{
+  width:min(520px,100%);
+  max-height:90vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:30px 30px 22px 22px;
+  padding:23px;
+  box-shadow:0 30px 80px rgba(20,15,50,.3);
 }
-.toast.show{transform:translate(-50%,0)}
+
+.modalTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.close{
+  width:36px;
+  height:36px;
+  border-radius:13px;
+  background:#f3f1f8;
+}
+
+/* ---------- ONBOARDING ---------- */
+
+.onboarding{
+  min-height:100vh;
+  padding:30px 20px 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.onboardLogo{
+  width:64px;
+  height:64px;
+  border-radius:22px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#7457ff,#ff70ad);
+  color:white;
+  font-size:30px;
+  box-shadow:0 18px 35px rgba(116,87,255,.2);
+  margin-bottom:20px;
+}
+
+.onboarding h1{
+  font-size:39px;
+  line-height:1;
+  letter-spacing:-2px;
+  margin:0 0 12px;
+}
+
+.onboarding .lead{
+  color:var(--muted);
+  line-height:1.55;
+  margin-bottom:25px;
+}
+
+.step{
+  display:none;
+}
+
+.step.active{
+  display:block;
+}
+
+.progressDots{
+  display:flex;
+  gap:6px;
+  margin-bottom:22px;
+}
+
+.dot{
+  height:5px;
+  flex:1;
+  border-radius:10px;
+  background:#e7e3f1;
+}
+
+.dot.active{
+  background:#7457ff;
+}
+
+.choiceGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.choice{
+  padding:14px;
+  background:#faf9fd;
+  border:2px solid transparent;
+  border-radius:17px;
+  text-align:left;
+}
+
+.choice.selected{
+  border-color:#7457ff;
+  background:#f0edff;
+}
+
+.choice small{
+  display:block;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.metricRow{
+  display:flex;
+  justify-content:space-between;
+  margin:13px 0 6px;
+  font-size:13px;
+}
+
+.lifeScore{
+  width:145px;
+  height:145px;
+  margin:5px auto 20px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:conic-gradient(#7457ff 0 78%,#eeeaf6 78% 100%);
+  position:relative;
+}
+
+.lifeScore:after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border-radius:50%;
+  background:white;
+}
+
+.lifeScoreInner{
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+
+.lifeScoreNumber{
+  font-size:33px;
+  font-weight:900;
+}
+
+.lifeScoreLabel{
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* ---------- FOOD ---------- */
+
+.foodOptions{
+  display:grid;
+  gap:9px;
+}
+
+.foodOption{
+  padding:14px;
+  border-radius:17px;
+  background:#faf9fd;
+  border:1px solid #eeeaf5;
+}
+
+.foodOption strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+.foodOption p{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.45;
+}
+
+/* ---------- BADGES ---------- */
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  background:#f1eeff;
+  color:#6348d7;
+  padding:7px 10px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.reward{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.rewardIcon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  background:#fff4d8;
+  border-radius:16px;
+  font-size:25px;
+}
+
+/* ---------- RESPONSIVE ---------- */
 
 @media(max-width:360px){
- .choice-grid{grid-template-columns:1fr}
- .name{font-size:23px}
+  .needGrid,
+  .choiceGrid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div id="toast" class="toast"></div>
-
 <!-- ================= ONBOARDING ================= -->
 
-<div id="onboarding" class="onboarding">
+<section id="onboarding" class="onboarding">
 
-    <div>
-        <div class="brand">my<span>health</span> coach ✦</div>
-        <div class="progress">
-            <div id="onboardProgress" class="progress-fill"></div>
-        </div>
+  <div class="onboardLogo">💗</div>
+
+  <h1>Meet your<br>health coach.</h1>
+
+  <p class="lead">
+    This isn't another plan telling you how to live.
+    Your coach learns how <i>you</i> actually live — then builds around that.
+  </p>
+
+  <div class="progressDots" id="progressDots"></div>
+
+  <!-- STEP 1 -->
+  <div class="step active" data-step="1">
+    <div class="card">
+      <div class="cardTitle">First things first 👋</div>
+      <p class="small">Let's get to know each other.</p>
+
+      <div class="field">
+        <label>What should I call you?</label>
+        <input id="name" class="input" placeholder="Your name">
+      </div>
+
+      <div class="field">
+        <label>Age</label>
+        <input id="age" class="input" type="number" placeholder="e.g. 21">
+      </div>
     </div>
 
-    <div id="onboardContent" class="onboard-content"></div>
+    <button class="primary" onclick="nextStep()">Let's go →</button>
+  </div>
 
-    <div class="onboard-bottom">
-        <button id="backBtn" class="secondary hidden" onclick="previousStep()">Back</button>
-        <button class="primary" onclick="nextStep()" id="nextBtn">Let's go →</button>
+  <!-- STEP 2 -->
+  <div class="step" data-step="2">
+    <div class="card">
+      <div class="cardTitle">Your body basics</div>
+      <p class="small">Only what helps me personalize your plan.</p>
+
+      <div class="field">
+        <label>Height (cm)</label>
+        <input id="height" class="input" type="number" placeholder="e.g. 165">
+      </div>
+
+      <div class="field">
+        <label>Weight (kg)</label>
+        <input id="weight" class="input" type="number" placeholder="e.g. 60">
+      </div>
+
+      <div class="field">
+        <label>Current fitness level</label>
+        <select id="fitness">
+          <option value="">Choose</option>
+          <option>Just starting</option>
+          <option>Somewhat active</option>
+          <option>Regularly active</option>
+          <option>Very active</option>
+        </select>
+      </div>
     </div>
 
-</div>
+    <button class="primary" onclick="nextStep()">Continue →</button>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step" data-step="3">
+    <div class="card">
+      <div class="cardTitle">What are we working toward? 🎯</div>
+      <p class="small">Choose everything that genuinely matters to you.</p>
+
+      <div class="choiceGrid">
+        <button class="choice" onclick="toggleChoice(this,'goals')">💪 Get fitter</button>
+        <button class="choice" onclick="toggleChoice(this,'goals')">❤️ Improve health</button>
+        <button class="choice" onclick="toggleChoice(this,'goals')">🏃 Build stamina</button>
+        <button class="choice" onclick="toggleChoice(this,'goals')">💤 Better sleep</button>
+        <button class="choice" onclick="toggleChoice(this,'goals')">🧠 Feel better</button>
+        <button class="choice" onclick="toggleChoice(this,'goals')">⚡ More energy</button>
+        <button class="choice" onclick="toggleChoice(this,'goals')">⚖️ Manage weight</button>
+        <button class="choice" onclick="toggleChoice(this,'goals')">🥗 Eat better</button>
+      </div>
+    </div>
+
+    <button class="primary" onclick="nextStep()">That's me →</button>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" data-step="4">
+    <div class="card">
+      <div class="cardTitle">Your actual life 🏠</div>
+      <p class="small">I don't want to create a perfect plan for an imaginary version of you.</p>
+
+      <div class="field">
+        <label>Your usual day</label>
+        <textarea id="schedule" placeholder="Example: College 9–4, commute 1 hour, study at night..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Typical sleep</label>
+        <select id="sleep">
+          <option>Usually 7–9 hours</option>
+          <option>Usually 6–7 hours</option>
+          <option>Usually under 6 hours</option>
+          <option>My sleep is unpredictable</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>How much time can you realistically give exercise?</label>
+        <select id="exerciseTime">
+          <option>5–10 minutes</option>
+          <option>10–20 minutes</option>
+          <option>20–40 minutes</option>
+          <option>40+ minutes</option>
+          <option>It changes every day</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="primary" onclick="nextStep()">Make it realistic →</button>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step" data-step="5">
+    <div class="card">
+      <div class="cardTitle">Food, your way 🍴</div>
+      <p class="small">No influencer meal plans. Tell me what actually works.</p>
+
+      <div class="field">
+        <label>Diet</label>
+        <select id="diet">
+          <option>Vegetarian</option>
+          <option>Non-vegetarian</option>
+          <option>Vegan</option>
+          <option>Eggitarian</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Cooking situation</label>
+        <select id="cooking">
+          <option>I cook regularly</option>
+          <option>I can make simple things</option>
+          <option>Mostly hostel / mess / family food</option>
+          <option>I barely cook</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Food budget</label>
+        <select id="budget">
+          <option>Very budget-friendly</option>
+          <option>Moderate</option>
+          <option>Flexible</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Foods you usually have at home</label>
+        <textarea id="homeFoods" placeholder="Example: eggs, bread, potatoes, rice, dal, curd..."></textarea>
+      </div>
+    </div>
+
+    <button class="primary" onclick="nextStep()">Got it 🍴 →</button>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step" data-step="6">
+    <div class="card">
+      <div class="cardTitle">Things I should know 🫶</div>
+      <p class="small">These help me avoid giving you unsafe or annoying advice.</p>
+
+      <div class="field">
+        <label>Allergies / dietary restrictions</label>
+        <textarea id="allergies" placeholder="Write none if there aren't any."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Injuries or movement limitations</label>
+        <textarea id="injuries" placeholder="Anything I should work around?"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Doctor restrictions / important medical information</label>
+        <textarea id="medical" placeholder="Optional. Only share what you're comfortable storing in this prototype."></textarea>
+      </div>
+    </div>
+
+    <button class="primary" onclick="nextStep()">Next →</button>
+  </div>
+
+  <!-- STEP 7 -->
+  <div class="step" data-step="7">
+    <div class="card">
+      <div class="cardTitle">Please don't make me... 😂</div>
+      <p class="small">Your coach needs to know what you hate.</p>
+
+      <div class="choiceGrid">
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">🏃 Running</button>
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">🔥 Burpees</button>
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">🏋️ Gym</button>
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">🌅 Early workouts</button>
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">🍳 Complicated cooking</button>
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">🔢 Calorie counting</button>
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">⏰ Long workouts</button>
+        <button class="choice" onclick="toggleChoice(this,'dislikes')">🥬 Boring food</button>
+      </div>
+    </div>
+
+    <button class="primary" onclick="nextStep()">Noted 😌 →</button>
+  </div>
+
+  <!-- STEP 8 -->
+  <div class="step" data-step="8">
+    <div class="card">
+      <div class="cardTitle">How should I motivate you? 🧠</div>
+      <p class="small">Different people need different kinds of pushes.</p>
+
+      <div class="choiceGrid">
+        <button class="choice" onclick="selectSingle(this,'motivation')">🏆 Competition</button>
+        <button class="choice" onclick="selectSingle(this,'motivation')">🎁 Rewards</button>
+        <button class="choice" onclick="selectSingle(this,'motivation')">📈 Seeing progress</button>
+        <button class="choice" onclick="selectSingle(this,'motivation')">💗 Encouragement</button>
+        <button class="choice" onclick="selectSingle(this,'motivation')">🎯 Direct honesty</button>
+        <button class="choice" onclick="selectSingle(this,'motivation')">🌿 Low pressure</button>
+      </div>
+    </div>
+
+    <button class="primary" onclick="nextStep()">One last thing →</button>
+  </div>
+
+  <!-- STEP 9 -->
+  <div class="step" data-step="9">
+    <div class="card">
+      <div class="cardTitle">How are you today?</div>
+      <p class="small">
+        No 1–5 energy scale. Just tell me what actually feels like you today.
+      </p>
+
+      <div class="moodGrid">
+        <button class="moodBtn" onclick="selectMood(this,'great')"><span class="moodEmoji">✨</span><b>Feeling great</b><br><span class="small">Lots of energy</span></button>
+        <button class="moodBtn" onclick="selectMood(this,'normal')"><span class="moodEmoji">🙂</span><b>Pretty normal</b><br><span class="small">Nothing unusual</span></button>
+        <button class="moodBtn" onclick="selectMood(this,'meh')"><span class="moodEmoji">😐</span><b>Meh</b><br><span class="small">Could be better</span></button>
+        <button class="moodBtn" onclick="selectMood(this,'exhausted')"><span class="moodEmoji">🥱</span><b>Exhausted</b><br><span class="small">Running on empty</span></button>
+        <button class="moodBtn" onclick="selectMood(this,'stressed')"><span class="moodEmoji">🫠</span><b>Stressed</b><br><span class="small">A lot going on</span></button>
+        <button class="moodBtn" onclick="selectMood(this,'unwell')"><span class="moodEmoji">🤒</span><b>Not feeling well</b><br><span class="small">I may need recovery</span></button>
+      </div>
+
+      <div class="field" style="margin-top:15px">
+        <label>Anything I should know about today?</label>
+        <textarea id="todayNote" placeholder="Exam tomorrow? Bad sleep? Period? Travel? Ate late? Just feeling weird? Tell me."></textarea>
+      </div>
+    </div>
+
+    <button class="primary" onclick="finishOnboarding()">Meet your coach 💗</button>
+  </div>
+
+</section>
 
 
 <!-- ================= MAIN APP ================= -->
 
-<div id="mainApp" class="app hidden">
+<main id="app" class="app hidden">
 
-    <!-- TODAY -->
-    <section id="todayPage" class="screen">
+<header class="topbar">
+  <div class="logo">
+    <div class="logoBubble">💗</div>
+    <span>my health coach</span>
+  </div>
+  <button class="iconBtn" onclick="openModal('profileModal')">⚙️</button>
+</header>
 
-        <div class="header">
-            <div>
-                <div class="greeting" id="greeting">Good morning ☀️</div>
-                <div class="name" id="userName">Hey! 👋</div>
-            </div>
-            <div class="avatar">💗</div>
+
+<!-- ================= TODAY ================= -->
+
+<section id="today" class="screen">
+
+  <div class="greeting" id="greeting">Good morning</div>
+
+  <div class="hero">
+    <h2 id="heroTitle">Let's make today work for you.</h2>
+    <p id="heroText">Your plan should fit your life — not the other way around.</p>
+    <div class="heroEmoji">💗</div>
+  </div>
+
+  <div class="card needCard">
+    <div class="needHeader">
+      <div>
+        <div class="cardTitle">What do you need right now?</div>
+        <div class="small">Tell me what's actually happening.</div>
+      </div>
+      <span>🧠</span>
+    </div>
+
+    <div class="needGrid">
+      <button class="needBtn" onclick="needNow('hungry')">
+        <strong>🍴 I'm hungry</strong>
+        <span>Help me figure out food</span>
+      </button>
+
+      <button class="needBtn" onclick="needNow('move')">
+        <strong>🏃 I need to move</strong>
+        <span>Give me something realistic</span>
+      </button>
+
+      <button class="needBtn" onclick="needNow('exhausted')">
+        <strong>🥱 I'm exhausted</strong>
+        <span>Should I rest?</span>
+      </button>
+
+      <button class="needBtn" onclick="needNow('stressed')">
+        <strong>🫠 I'm stressed</strong>
+        <span>Help me reset</span>
+      </button>
+
+      <button class="needBtn" onclick="needNow('sick')">
+        <strong>🤒 I feel sick</strong>
+        <span>Switch to recovery mode</span>
+      </button>
+
+      <button class="needBtn" onclick="needNow('motivation')">
+        <strong>🔥 Push me</strong>
+        <span>I'm avoiding it</span>
+      </button>
+
+      <button class="needBtn" onclick="needNow('food')">
+        <strong>🥗 What should I eat?</strong>
+        <span>Use my actual context</span>
+      </button>
+
+      <button class="needBtn" onclick="needNow('talk')">
+        <strong>💬 Just talk</strong>
+        <span>I have something to say</span>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div class="cardTitle">Today's picture</div>
+        <div class="small">Demo device data</div>
+      </div>
+      <span class="badge">DEMO</span>
+    </div>
+
+    <div class="stats" style="margin-top:13px;box-shadow:none">
+      <div class="stat">
+        <div class="statIcon">👣</div>
+        <div class="statValue">6,842</div>
+        <div class="statLabel">Steps</div>
+      </div>
+
+      <div class="stat">
+        <div class="statIcon">❤️</div>
+        <div class="statValue">72</div>
+        <div class="statLabel">Resting HR · bpm</div>
+      </div>
+
+      <div class="stat">
+        <div class="statIcon">💧</div>
+        <div class="statValue" id="waterValue">4</div>
+        <div class="statLabel">Glasses of water</div>
+      </div>
+
+      <div class="stat">
+        <div class="statIcon">😴</div>
+        <div class="statValue">7h 12m</div>
+        <div class="statLabel">Sleep</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between">
+      <div>
+        <div class="cardTitle">Your coach noticed 👀</div>
+        <p class="small" id="coachObservation">
+          You've already moved quite a bit today. A short walk later may be enough.
+        </p>
+      </div>
+      <button class="textBtn" onclick="openModal('whyModal')">Why?</button>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="cardTitle">💧 Hydration</div>
+    <div class="metricRow">
+      <span>4 / 8 glasses</span>
+      <span>50%</span>
+    </div>
+    <div class="progressTrack">
+      <div class="progressFill" style="width:50%"></div>
+    </div>
+    <button class="secondary" style="margin-top:12px" onclick="addWater()">+ Add a glass</button>
+  </div>
+
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between">
+      <div>
+        <div class="cardTitle">🎁 Reward Bank</div>
+        <div class="small">Healthy actions → rewards you actually care about.</div>
+      </div>
+      <b id="points">120 pts</b>
+    </div>
+
+    <div class="reward" style="margin-top:15px">
+      <div class="rewardIcon">🍦</div>
+      <div>
+        <b>Ice cream / treat</b>
+        <div class="small">180 pts · No guilt attached.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="cardTitle">🔄 Plan vs. actual</div>
+    <p class="small">
+      Planned: 25 min movement · 8 glasses water · balanced dinner.
+    </p>
+
+    <div class="metricRow">
+      <span>What actually happened</span>
+      <span>Learning, not failing.</span>
+    </div>
+
+    <div class="progressTrack">
+      <div class="progressFill" style="width:68%"></div>
+    </div>
+
+    <button class="secondary" style="margin-top:12px" onclick="showToast('Tomorrow can adapt to what happened today. No punishment plan needed 💗')">
+      Adapt tomorrow
+    </button>
+  </div>
+
+</section>
+
+
+<!-- ================= PROGRESS ================= -->
+
+<section id="progress" class="screen hidden">
+
+  <h1 class="screenTitle">Your progress 📈</h1>
+  <p class="subtitle">Patterns matter more than perfect days.</p>
+
+  <div class="card">
+    <div class="lifeScore">
+      <div class="lifeScoreInner">
+        <div class="lifeScoreNumber">78</div>
+        <div class="lifeScoreLabel">Life Score</div>
+      </div>
+    </div>
+
+    <div style="text-align:center">
+      <div class="cardTitle">You're building consistency.</div>
+      <p class="small">This score looks at movement, nutrition, hydration, sleep, recovery and mood — not just weight.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">This week</div>
+
+    <div class="metricRow"><span>❤️ Cardiovascular</span><b>74%</b></div>
+    <div class="progressTrack"><div class="progressFill" style="width:74%"></div></div>
+
+    <div class="metricRow"><span>👣 Movement</span><b>82%</b></div>
+    <div class="progressTrack"><div class="progressFill" style="width:82%"></div></div>
+
+    <div class="metricRow"><span>🥗 Nutrition</span><b>76%</b></div>
+    <div class="progressTrack"><div class="progressFill" style="width:76%"></div></div>
+
+    <div class="metricRow"><span>😴 Sleep</span><b>69%</b></div>
+    <div class="progressTrack"><div class="progressFill" style="width:69%"></div></div>
+
+    <div class="metricRow"><span>🧘 Recovery</span><b>84%</b></div>
+    <div class="progressTrack"><div class="progressFill" style="width:84%"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">What changed?</div>
+    <p class="small">
+      Your movement has been fairly consistent. Sleep is the area with the biggest opportunity this week.
+      That doesn't mean "try harder" — it may mean we should adjust your evenings.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">🏆 Consistency streak</div>
+    <h2 style="font-size:34px;margin:7px 0">6 days</h2>
+    <div class="small">Recovery days are allowed. Missing one day doesn't erase your progress.</div>
+  </div>
+
+</section>
+
+
+<!-- ================= FOOD ================= -->
+
+<section id="food" class="screen hidden">
+
+  <h1 class="screenTitle">Food 🍴</h1>
+  <p class="subtitle">Tell me what you have. I'll work from reality.</p>
+
+  <div class="card gradientCard">
+    <div class="cardTitle">What's in your kitchen?</div>
+    <p class="small">I can build meal ideas from ingredients you already have.</p>
+
+    <textarea id="ingredients" style="margin-top:13px;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:white" placeholder="Potatoes, eggs, bread, curd..."></textarea>
+
+    <button class="primary" style="margin-top:10px;background:white;color:#7457ff;box-shadow:none" onclick="makeMeal()">
+      Build my meal →
+    </button>
+  </div>
+
+  <div id="mealResult"></div>
+
+  <div class="card">
+    <div class="cardTitle">🍽️ Log something</div>
+    <p class="small">You can type a meal naturally. Exact calorie estimates would later come from the AI food engine.</p>
+
+    <input id="foodLog" class="input" placeholder="e.g. 2 rotis + dal + curd">
+
+    <button class="secondary" style="margin-top:10px" onclick="logFood()">Log meal</button>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">Food philosophy</div>
+    <p class="small">
+      One pizza doesn't erase a week. One salad doesn't make someone healthy.
+      The coach looks at patterns and context instead of turning food into a moral score.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= ACTIVITY ================= -->
+
+<section id="activity" class="screen hidden">
+
+  <h1 class="screenTitle">Activity 🏃</h1>
+  <p class="subtitle">Move in ways that fit your body and your day.</p>
+
+  <div class="card gradientCard">
+    <div class="badge" style="background:rgba(255,255,255,.18);color:white">TODAY</div>
+    <h2 style="font-size:34px;margin:12px 0 3px">24 min</h2>
+    <p class="small">Active movement</p>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">Your movement options</div>
+
+    <div class="foodOptions" style="margin-top:13px">
+
+      <div class="foodOption">
+        <strong>🚶 10-minute walk</strong>
+        <p>Low-friction movement for a busy or tired day.</p>
+      </div>
+
+      <div class="foodOption">
+        <strong>🧘 8-minute mobility</strong>
+        <p>Useful when you want movement without a hard workout.</p>
+      </div>
+
+      <div class="foodOption">
+        <strong>💪 20-minute full body</strong>
+        <p>Adaptive strength session if your recovery supports it.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">❤️ Heart & recovery</div>
+    <p class="small">
+      Resting HR: <b>72 bpm</b><br>
+      Exercise HR: <b>124 bpm</b><br>
+      Recovery status: <b>Normal demo status</b>
+    </p>
+
+    <span class="badge">Demo data</span>
+  </div>
+
+  <div class="card">
+    <div class="cardTitle">Important</div>
+    <p class="small">
+      A phone cannot reliably measure every health metric continuously.
+      Real versions will distinguish between data that is measured by the phone,
+      imported from Apple Health / Health Connect or a wearable, and estimated by the app.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ================= COACH ================= -->
+
+<section id="coach" class="screen hidden">
+
+  <h1 class="screenTitle">Talk to me 💬</h1>
+  <p class="subtitle">You don't have to choose a category. Just say what's going on.</p>
+
+  <div class="chips">
+    <button class="chip" onclick="quickChat('What should I eat tonight?')">What should I eat tonight?</button>
+    <button class="chip" onclick="quickChat('I am too tired to work out')">Too tired to work out</button>
+    <button class="chip" onclick="quickChat('I ate too much today')">I ate too much</button>
+    <button class="chip" onclick="quickChat('Give me a 10 minute workout')">10-min workout</button>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="chatBox" id="chatBox">
+
+      <div class="message coach">
+        <div class="coachAvatar">💗</div>
+        <div class="bubble">
+          Hey! I'm here. You can ask me something useful, something random,
+          or something you think is "stupid." I won't judge 😂
         </div>
+      </div>
 
-        <div class="mode-strip">
-            <button class="mode active" onclick="setMode('normal',this)">Normal</button>
-            <button class="mode" onclick="setMode('busy',this)">Busy day</button>
-            <button class="mode" onclick="setMode('sick',this)">🤒 Sick</button>
-            <button class="mode" onclick="setMode('low',this)">😔 Low mood</button>
-            <button class="mode" onclick="setMode('travel',this)">✈️ Travel</button>
-            <button class="mode" onclick="setMode('party',this)">🎉 Party</button>
-        </div>
-
-        <div class="health-card gradient" style="margin-top:14px">
+    </div>
 
-            <div class="health-top">
-                <div>
-                    <div style="font-size:13px;opacity:.85">Your day so far</div>
-                    <div class="score" id="score">78</div>
-                </div>
+    <div class="chatInput">
+      <input id="chatInput" class="input" placeholder="Tell me what's going on...">
+      <button class="send" onclick="sendChat()">➤</button>
+    </div>
+  </div>
 
-                <div class="status" id="status">● Doing well</div>
-            </div>
+  <div class="card">
+    <div class="cardTitle">🧠 What I know about you</div>
+    <p class="small" id="memorySummary"></p>
+    <button class="textBtn" onclick="openModal('profileModal')">Edit my reality →</button>
+  </div>
 
-            <div class="health-message" id="healthMessage">
-                Your activity and sleep look reasonably balanced.
-                You don't need to chase perfection today.
-            </div>
+</section>
 
-        </div>
 
+<!-- ================= BOTTOM NAV ================= -->
 
-        <div class="section-head">
-            <h3>Today's snapshot</h3>
-            <button class="link" onclick="openWhy()">Why?</button>
-        </div>
+<nav class="bottomNav">
 
-        <div class="stats">
+  <button class="navBtn active" onclick="showScreen('today',this)">
+    <span>🏠</span>Today
+  </button>
 
-            <div class="card stat">
-                <div class="stat-icon">👟</div>
-                <div class="stat-name">Steps</div>
-                <div class="stat-value" id="steps">4,280</div>
-            </div>
+  <button class="navBtn" onclick="showScreen('progress',this)">
+    <span>📈</span>Progress
+  </button>
 
-            <div class="card stat">
-                <div class="stat-icon">😴</div>
-                <div class="stat-name">Sleep</div>
-                <div class="stat-value" id="sleep">7h 20m</div>
-            </div>
+  <button class="navBtn" onclick="showScreen('food',this)">
+    <span>🍴</span>Food
+  </button>
 
-            <div class="card stat">
-                <div class="stat-icon">❤️</div>
-                <div class="stat-name">Heart rate</div>
-                <div class="stat-value">72 bpm</div>
-            </div>
+  <button class="navBtn" onclick="showScreen('activity',this)">
+    <span>🏃</span>Activity
+  </button>
 
-            <div class="card stat">
-                <div class="stat-icon">⚡</div>
-                <div class="stat-name">Energy</div>
-                <div class="stat-value" id="energyDisplay">Good</div>
-            </div>
+  <button class="navBtn" onclick="showScreen('coach',this)">
+    <span>💬</span>Coach
+  </button>
 
-        </div>
+</nav>
 
+</main>
 
-        <div class="section-head">
-            <h3>🤖 Your Coach</h3>
-            <button class="link" onclick="openCoach()">Talk to me</button>
-        </div>
 
-        <div class="card coach">
+<!-- ================= MODALS ================= -->
 
-            <div class="coach-head">
-                <div class="bot">🤖</div>
-                <div>
-                    <div class="coach-title">Your personal coach</div>
-                    <div class="small">Honest. Human. Adaptable.</div>
-                </div>
-            </div>
-
-            <div class="coach-message" id="coachMessage">
-                You don't need a huge workout today.
-                Let's start with a little movement and see how you feel.
-            </div>
-
-            <div class="why" id="whyBox">
-                <strong>Why this?</strong><br>
-                I'm looking at your current energy, activity, sleep,
-                goals and what you've told me you actually enjoy.
-            </div>
-
-            <button class="action" onclick="showPlan()">
-                What should I do right now? ✨
-            </button>
-
-        </div>
-
-
-        <div class="section-head">
-            <h3>💧 Hydration</h3>
-        </div>
-
-        <div class="card water">
-
-            <div class="water-row">
-
-                <div>
-                    <div class="small">Today's water</div>
-                    <div class="water-number">
-                        <span id="water">5</span> / 8 glasses
-                    </div>
-                </div>
-
-                <button class="plus" onclick="addWater()">+</button>
-
-            </div>
-
-        </div>
-
-
-        <div class="section-head">
-            <h3>🎯 Today's goal</h3>
-        </div>
-
-        <div class="card goal">
-
-            <div class="goal-top">
-                <span id="goalName">Move your body</span>
-                <strong id="goalPercent">68%</strong>
-            </div>
-
-            <div class="progressbar">
-                <div class="fill" id="goalFill"></div>
-            </div>
-
-        </div>
-
-
-        <div class="section-head">
-            <h3>🎁 Reward Bank</h3>
-            <button class="link" onclick="showPage('rewards')">Open</button>
-        </div>
-
-        <div class="card panel">
-            <strong id="points">120 points</strong>
-            <p class="small" style="margin-top:5px">
-                You earn points for healthy behaviours—not for losing weight.
-            </p>
-        </div>
-
-    </section>
-
-
-    <!-- PROGRESS -->
-    <section id="progressPage" class="screen hidden">
-
-        <div class="page-title">Your Progress 📈</div>
-        <div class="page-sub">Look for patterns, not perfection.</div>
-
-        <div class="card panel">
-
-            <h3>This week</h3>
-
-            <div class="metric-row">
-                <span>🏃 Movement</span>
-                <strong>4 / 7 days</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>💧 Hydration</span>
-                <strong>82%</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>😴 Sleep consistency</span>
-                <strong>76%</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>🍎 Meal consistency</span>
-                <strong>81%</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>😊 Recovery</span>
-                <strong>Good</strong>
-            </div>
-
-        </div>
-
-        <div class="card panel">
-
-            <h3>What I'm noticing 👀</h3>
-
-            <p style="margin-top:12px;font-size:14px">
-                You tend to move more on days when you sleep well.
-                Instead of forcing more exercise after poor sleep,
-                your plan can prioritise recovery.
-            </p>
-
-        </div>
-
-        <div class="card panel">
-
-            <h3>Plan vs reality</h3>
-
-            <div class="metric-row">
-                <span>Planned movement</span>
-                <strong>30 min</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>Actual movement</span>
-                <strong>18 min</strong>
-            </div>
-
-            <p class="small" style="margin-top:12px">
-                Missing a target doesn't erase your progress.
-                Tomorrow's plan adjusts to reality.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOD -->
-    <section id="foodPage" class="screen hidden">
-
-        <div class="page-title">Food 🍎</div>
-        <div class="page-sub">
-            Real food. Real life. No punishment.
-        </div>
-
-        <div class="card panel">
-
-            <h3>Today's meals</h3>
-
-            <div class="meal">
-                <div class="meal-icon">🍳</div>
-                <div class="meal-info">
-                    <div class="meal-name">Breakfast</div>
-                    <div class="meal-note">Protein + carbs + fruit</div>
-                </div>
-                <strong>✓</strong>
-            </div>
-
-            <div class="meal">
-                <div class="meal-icon">🥗</div>
-                <div class="meal-info">
-                    <div class="meal-name">Lunch</div>
-                    <div class="meal-note">Choose something filling</div>
-                </div>
-                <strong>+</strong>
-            </div>
-
-            <div class="meal">
-                <div class="meal-icon">🍌</div>
-                <div class="meal-info">
-                    <div class="meal-name">Snack</div>
-                    <div class="meal-note">Based on hunger—not guilt</div>
-                </div>
-                <strong>+</strong>
-            </div>
-
-        </div>
-
-        <div class="card panel">
-
-            <h3>🏠 What's at home?</h3>
-
-            <p class="small" style="margin:7px 0 13px">
-                Tell your coach your ingredients and it can suggest realistic meals.
-            </p>
-
-            <textarea id="ingredients"
-                placeholder="e.g. potatoes, eggs, rice, tomatoes..."></textarea>
-
-            <button class="action" onclick="mealIdea()">
-                Make me something 🍳
-            </button>
-
-        </div>
-
-        <div class="card panel">
-
-            <h3>🍫 Flexible food</h3>
-
-            <p style="margin-top:10px;font-size:14px">
-                You don't have to earn food. A treat can be part of a normal
-                eating pattern when it fits your health needs.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ACTIVITY -->
-    <section id="activityPage" class="screen hidden">
-
-        <div class="page-title">Activity 🏃</div>
-        <div class="page-sub">Your body isn't a machine. We adapt.</div>
-
-        <div class="card activity-big">
-
-            <div class="ring">
-                <div class="ring-inner">
-                    <div class="ring-number">68%</div>
-                    <div class="small">today</div>
-                </div>
-            </div>
-
-            <h2>4,280 steps</h2>
-            <p class="small" style="margin-top:5px">
-                32 active minutes · 2.8 km
-            </p>
-
-        </div>
-
-        <div class="card panel">
-
-            <h3>Today's movement</h3>
-
-            <div class="metric-row">
-                <span>🚶 Walking</span>
-                <strong>18 min</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>🔥 Active time</span>
-                <strong>32 min</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>❤️ Exercise intensity</span>
-                <strong>Moderate</strong>
-            </div>
-
-        </div>
-
-        <div class="card panel">
-
-            <h3>Workout suggestion</h3>
-
-            <p id="workoutSuggestion" style="margin-top:10px;font-size:14px">
-                15-minute easy walk + 5 minutes of mobility.
-            </p>
-
-            <button class="action" onclick="showWorkout()">
-                See today's workout
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- REWARDS -->
-    <section id="rewardsPage" class="screen hidden">
-
-        <div class="page-title">Reward Bank 🎁</div>
-        <div class="page-sub">Choose what actually motivates you.</div>
-
-        <div class="card panel gradient">
-
-            <div class="small" style="color:white;opacity:.8">
-                Your points
-            </div>
-
-            <div style="font-size:42px;font-weight:900;margin-top:5px">
-                120
-            </div>
-
-            <p style="font-size:13px;opacity:.9;margin-top:5px">
-                Earned from consistency, movement, hydration and recovery.
-            </p>
-
-        </div>
-
-        <div class="card panel">
-
-            <div class="reward">
-                <div class="reward-icon">🍫</div>
-                <div class="reward-info">
-                    <div class="reward-name">Chocolate treat</div>
-                    <div class="reward-cost">100 points</div>
-                </div>
-                <button class="redeem" onclick="redeem('Chocolate treat',100)">Redeem</button>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">🎬</div>
-                <div class="reward-info">
-                    <div class="reward-name">Movie night</div>
-                    <div class="reward-cost">250 points</div>
-                </div>
-                <button class="redeem" onclick="redeem('Movie night',250)">Redeem</button>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">☕</div>
-                <div class="reward-info">
-                    <div class="reward-name">Café treat</div>
-                    <div class="reward-cost">180 points</div>
-                </div>
-                <button class="redeem" onclick="redeem('Café treat',180)">Redeem</button>
-            </div>
-
-            <div class="reward">
-                <div class="reward-icon">📚</div>
-                <div class="reward-info">
-                    <div class="reward-name">New book</div>
-                    <div class="reward-cost">500 points</div>
-                </div>
-                <button class="redeem" onclick="redeem('New book',500)">Redeem</button>
-            </div>
-
-        </div>
-
-        <div class="card panel">
-
-            <h3>How you earn points</h3>
-
-            <div class="metric-row">
-                <span>🏃 Complete movement</span>
-                <strong>+30</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>💧 Hydration target</span>
-                <strong>+20</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>😴 Consistent sleep</span>
-                <strong>+25</strong>
-            </div>
-
-            <div class="metric-row">
-                <span>🧘 Recovery day when needed</span>
-                <strong>+20</strong>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- COACH -->
-    <section id="coachPage" class="screen hidden">
-
-        <div class="chat">
-
-            <div class="chat-head">
-                <div class="bot">🤖</div>
-                <div>
-                    <h2>Your Coach</h2>
-                    <div class="small">
-                        Ask me something—even if it's ridiculous 😂
-                    </div>
-                </div>
-            </div>
-
-            <div id="chatMessages" class="chat-messages">
-
-                <div class="message coach">
-                    Hey 👋 I'm your coach. You don't need to talk to me
-                    like I'm a health app. Just tell me what's going on.
-                </div>
-
-                <div class="message coach">
-                    And yes, you can ask me stupid questions. I promise
-                    I won't judge you. 😂
-                </div>
-
-            </div>
-
-            <div class="chat-input">
-                <input id="chatInput"
-                       placeholder="Talk to me..."
-                       onkeydown="if(event.key==='Enter')sendMessage()">
-                <button class="send" onclick="sendMessage()">➤</button>
-            </div>
-
-        </div>
-
-    </section>
-
+<div id="actionModal" class="modal hidden">
+  <div class="modalBox">
+    <div class="modalTop">
+      <div class="cardTitle">Your next move</div>
+      <button class="close" onclick="closeModal('actionModal')">✕</button>
+    </div>
+    <div id="actionContent"></div>
+  </div>
 </div>
 
 
-<!-- NAV -->
+<div id="whyModal" class="modal hidden">
+  <div class="modalBox">
+    <div class="modalTop">
+      <div class="cardTitle">Why am I saying that?</div>
+      <button class="close" onclick="closeModal('whyModal')">✕</button>
+    </div>
 
-<div id="nav" class="nav hidden">
+    <p class="small">
+      Your coach combines your profile, today's state, activity, sleep,
+      food context, preferences and recent behaviour.
+    </p>
 
-    <button class="active" onclick="showPage('today')">
-        <span>🏠</span>Today
-    </button>
-
-    <button onclick="showPage('progress')">
-        <span>📊</span>Progress
-    </button>
-
-    <button onclick="showPage('food')">
-        <span>🍎</span>Food
-    </button>
-
-    <button onclick="showPage('activity')">
-        <span>🏃</span>Activity
-    </button>
-
-    <button onclick="showPage('coach')">
-        <span>🤖</span>Coach
-    </button>
-
+    <p class="small">
+      In this prototype the numbers are demo values. Later these inputs will
+      come from your phone, Apple Health / Health Connect, wearables and your own logs.
+    </p>
+  </div>
 </div>
 
 
-<!-- MODAL -->
+<div id="profileModal" class="modal hidden">
+  <div class="modalBox">
+    <div class="modalTop">
+      <div class="cardTitle">Coach Memory 🧠</div>
+      <button class="close" onclick="closeModal('profileModal')">✕</button>
+    </div>
 
-<div id="modalBg" class="modal-bg hidden" onclick="closeModal(event)">
-    <div class="modal" id="modalContent"></div>
+    <div id="profileDetails"></div>
+
+    <p class="small">
+      Privacy note: this prototype stores profile information in your browser's
+      local storage. Don't put sensitive medical information into a public demo.
+      A production version needs proper authentication, encryption, access controls
+      and appropriate health-data privacy compliance.
+    </p>
+
+    <button class="secondary" onclick="closeModal('profileModal')">Done</button>
+  </div>
 </div>
+
+
+<div id="toast" style="
+position:fixed;
+left:50%;
+bottom:105px;
+transform:translateX(-50%);
+background:#17152a;
+color:white;
+padding:12px 17px;
+border-radius:15px;
+font-size:13px;
+z-index:100;
+opacity:0;
+pointer-events:none;
+transition:.25s;
+"></div>
 
 
 <script>
 
 /* =========================================================
-   DATA
+   HEALTH COACH V2
+   Conversation / Safety / UI are intentionally separated.
+   This is prototype logic — not medical diagnosis.
 ========================================================= */
 
-let profile = JSON.parse(localStorage.getItem("healthProfile") || "null");
+let profile = JSON.parse(localStorage.getItem("healthProfileV2") || "null");
+
+let currentStep = 1;
+const totalSteps = 9;
 
 let state = {
-    step:0,
-    water:5,
-    points:120,
-    mode:"normal",
-    goal:"",
-    energy:"",
-    motivation:"",
-    dislikes:[],
-    foods:[],
-    name:"",
-    age:"",
-    height:"",
-    weight:"",
-    fitness:"",
-    schedule:"",
-    budget:"",
-    cooking:"",
-    health:"",
-    restrictions:"",
-    sleep:"",
-    reward:"",
-    mood:""
+  mood:"",
+  todayNote:"",
+  water:4,
+  points:120
 };
 
-const steps = [
 
-{
-    eyebrow:"MEET YOUR COACH",
-    title:"Hey. I'm your coach. 👋",
-    sub:"I'm not here to give you a perfect plan. I'm here to figure out what actually works for you.",
-    html:`
-        <div class="card panel">
-            <p style="font-size:15px">
-            Your body, schedule, food, mood and real life all matter.
-            So before I tell you what to do, I want to know you.
-            </p>
-        </div>
-    `
-},
+/* ---------- ONBOARDING ---------- */
 
-{
-    eyebrow:"LET'S START WITH YOU",
-    title:"What's your name?",
-    sub:"So I don't have to call you 'user' like some boring robot. 😂",
-    html:`
-        <div class="field">
-            <label>Name</label>
-            <input id="nameInput" placeholder="Your name">
-        </div>
-        <div class="field">
-            <label>Age</label>
-            <input id="ageInput" type="number" placeholder="Your age">
-        </div>
-    `
-},
+function initOnboarding(){
 
-{
-    eyebrow:"YOUR BODY",
-    title:"Give me some basics.",
-    sub:"These help me understand your starting point. You can change them later.",
-    html:`
-        <div class="field">
-            <label>Height</label>
-            <input id="heightInput" placeholder="e.g. 165 cm">
-        </div>
-        <div class="field">
-            <label>Weight</label>
-            <input id="weightInput" placeholder="e.g. 60 kg">
-        </div>
-        <div class="choice-grid">
-            <button class="choice" data-group="fitness" onclick="choose(this,'fitness','Beginner')">
-                <strong>🌱 Beginner</strong><span>I'm starting out</span>
-            </button>
-            <button class="choice" data-group="fitness" onclick="choose(this,'fitness','Intermediate')">
-                <strong>🌿 Intermediate</strong><span>I exercise sometimes</span>
-            </button>
-            <button class="choice" data-group="fitness" onclick="choose(this,'fitness','Advanced')">
-                <strong>🔥 Advanced</strong><span>I'm quite active</span>
-            </button>
-            <button class="choice" data-group="fitness" onclick="choose(this,'fitness','Not sure')">
-                <strong>🤷 Not sure</strong><span>Figure it out with me</span>
-            </button>
-        </div>
-    `
-},
+  const dots=document.getElementById("progressDots");
 
-{
-    eyebrow:"YOUR GOALS",
-    title:"What do you actually want?",
-    sub:"Pick everything that matters to you. There doesn't have to be only one goal.",
-    html:`
-        <div class="chips">
-            ${[
-            "💪 Feel stronger",
-            "⚡ More energy",
-            "🏃 Improve fitness",
-            "🔄 Build a routine",
-            "😴 Sleep better",
-            "🥗 Eat better",
-            "🧘 Manage stress",
-            "🎯 Change body composition"
-            ].map(x=>`<button class="chip" onclick="toggleChip(this,'goal')">${x}</button>`).join("")}
-        </div>
-    `
-},
+  dots.innerHTML="";
 
-{
-    eyebrow:"YOUR REALITY",
-    title:"What does a normal day look like?",
-    sub:"I don't want to give you a two-hour workout when you have 25 minutes.",
-    html:`
-        <div class="field">
-            <label>Study / work schedule</label>
-            <input id="scheduleInput" placeholder="e.g. classes 9–4">
-        </div>
-        <div class="field">
-            <label>Typical sleep</label>
-            <input id="sleepInput" placeholder="e.g. 11:30 PM – 7 AM">
-        </div>
-        <div class="choice-grid">
-            <button class="choice" onclick="choose(this,'cooking','I cook')">
-                <strong>🍳 I cook</strong><span>Mostly homemade</span>
-            </button>
-            <button class="choice" onclick="choose(this,'cooking','Simple cooking')">
-                <strong>🥪 Simple</strong><span>Easy meals only</span>
-            </button>
-            <button class="choice" onclick="choose(this,'cooking','Mostly outside')">
-                <strong>🍱 Outside food</strong><span>Often eat out</span>
-            </button>
-            <button class="choice" onclick="choose(this,'cooking','Mixed')">
-                <strong>🏠 Mixed</strong><span>Depends on the day</span>
-            </button>
-        </div>
-        <div class="field" style="margin-top:15px">
-            <label>Food budget</label>
-            <input id="budgetInput" placeholder="e.g. ₹300/day">
-        </div>
-    `
-},
+  for(let i=1;i<=totalSteps;i++){
+    const d=document.createElement("div");
+    d.className="dot"+(i===1?" active":"");
+    dots.appendChild(d);
+  }
 
-{
-    eyebrow:"YOUR BODY & HEALTH",
-    title:"Anything I should know?",
-    sub:"Optional. This information should be treated as private and used to make safer plans.",
-    html:`
-        <div class="field">
-            <label>Health conditions / injuries / doctor restrictions</label>
-            <textarea id="healthInput" placeholder="Anything relevant..."></textarea>
-        </div>
-        <div class="field">
-            <label>Allergies / dietary restrictions</label>
-            <textarea id="restrictionInput" placeholder="Allergies, vegetarian, religious restrictions, etc."></textarea>
-        </div>
-        <div class="field">
-            <label>Medications or other important restrictions</label>
-            <textarea id="medInput" placeholder="Optional"></textarea>
-        </div>
-        <div class="card panel" style="background:#f7f5ff">
-            <p class="small">
-            🔒 You control what you share. In the real app, health information
-            will need stronger privacy and security than this prototype.
-            </p>
-        </div>
-    `
-},
-
-{
-    eyebrow:"THINGS YOU HATE 😂",
-    title:"What should I NEVER make you do?",
-    sub:"The coach should learn your preferences—not keep forcing things you hate.",
-    html:`
-        <div class="chips">
-            ${[
-            "🏃 Running",
-            "💀 Burpees",
-            "🏋️ Gym",
-            "🌅 Early workouts",
-            "🍳 Complicated cooking",
-            "📱 Counting every calorie",
-            "🥗 Meal prep",
-            "🧘 Long workouts"
-            ].map(x=>`<button class="chip" onclick="toggleChip(this,'dislike')">${x}</button>`).join("")}
-        </div>
-    `
-},
-
-{
-    eyebrow:"HOW SHOULD I MOTIVATE YOU?",
-    title:"What actually keeps you going?",
-    sub:"I'll change the way I encourage you depending on your answer.",
-    html:`
-        <div class="choice-grid">
-            <button class="choice" onclick="choose(this,'motivation','Competition')">
-                <strong>🏆 Competition</strong><span>Give me a challenge</span>
-            </button>
-            <button class="choice" onclick="choose(this,'motivation','Rewards')">
-                <strong>🎁 Rewards</strong><span>Give me something to earn</span>
-            </button>
-            <button class="choice" onclick="choose(this,'motivation','Progress')">
-                <strong>📈 Progress</strong><span>Show me improvement</span>
-            </button>
-            <button class="choice" onclick="choose(this,'motivation','Encouragement')">
-                <strong>🤗 Encouragement</strong><span>Keep me going</span>
-            </button>
-            <button class="choice" onclick="choose(this,'motivation','Directness')">
-                <strong>🎯 Directness</strong><span>Call me out</span>
-            </button>
-            <button class="choice" onclick="choose(this,'motivation','Low pressure')">
-                <strong>🌿 Low pressure</strong><span>Don't overwhelm me</span>
-            </button>
-        </div>
-    `
-},
-
-{
-    eyebrow:"RIGHT NOW",
-    title:"How are you today?",
-    sub:"Today's plan should respond to today's person—not yesterday's plan.",
-    html:`
-        <div class="choice-grid">
-            <button class="choice" onclick="choose(this,'mood','Great')">
-                <strong>😊 Great</strong><span>Feeling good</span>
-            </button>
-            <button class="choice" onclick="choose(this,'mood','Good')">
-                <strong>🙂 Good</strong><span>Pretty normal</span>
-            </button>
-            <button class="choice" onclick="choose(this,'mood','Meh')">
-                <strong>😐 Meh</strong><span>Could be better</span>
-            </button>
-            <button class="choice" onclick="choose(this,'mood','Low')">
-                <strong>😔 Low</strong><span>Not feeling it</span>
-            </button>
-            <button class="choice" onclick="choose(this,'mood','Sick')">
-                <strong>🤒 Sick</strong><span>Not well</span>
-            </button>
-            <button class="choice" onclick="choose(this,'mood','Exhausted')">
-                <strong>😴 Exhausted</strong><span>Very low energy</span>
-            </button>
-        </div>
-
-        <div class="field" style="margin-top:18px">
-            <label>Energy: 1–5</label>
-            <select id="energyInput">
-                <option value="">Choose</option>
-                <option>1 - Empty</option>
-                <option>2 - Low</option>
-                <option>3 - Okay</option>
-                <option>4 - Good</option>
-                <option>5 - Full battery</option>
-            </select>
-        </div>
-    `
 }
 
-];
+function updateSteps(){
 
+  document.querySelectorAll(".step").forEach(s=>{
+    s.classList.remove("active");
+  });
 
-/* =========================================================
-   ONBOARDING
-========================================================= */
+  const active=document.querySelector(`.step[data-step="${currentStep}"]`);
 
-function renderStep(){
+  if(active) active.classList.add("active");
 
-    const s=steps[state.step];
+  document.querySelectorAll(".dot").forEach((d,i)=>{
+    d.classList.toggle("active",i<currentStep);
+  });
 
-    document.getElementById("onboardContent").innerHTML=`
-        <div class="eyebrow">${s.eyebrow}</div>
-        <h1 class="question">${s.title}</h1>
-        <div class="subquestion">${s.sub}</div>
-        ${s.html}
-    `;
-
-    document.getElementById("onboardProgress").style.width =
-        ((state.step+1)/steps.length*100)+"%";
-
-    document.getElementById("backBtn")
-        .classList.toggle("hidden",state.step===0);
-
-    document.getElementById("nextBtn").innerText =
-        state.step===steps.length-1 ? "Meet your plan ✨" : "Continue →";
-
-    restoreStepValues();
 }
-
-
-function saveStepValues(){
-
-    const values={
-        name:"nameInput",
-        age:"ageInput",
-        height:"heightInput",
-        weight:"weightInput",
-        schedule:"scheduleInput",
-        sleep:"sleepInput",
-        budget:"budgetInput",
-        health:"healthInput",
-        restrictions:"restrictionInput",
-        energy:"energyInput"
-    };
-
-    for(const key in values){
-
-        const el=document.getElementById(values[key]);
-
-        if(el) state[key]=el.value;
-
-    }
-}
-
-
-function restoreStepValues(){
-
-    const map={
-        name:"nameInput",
-        age:"ageInput",
-        height:"heightInput",
-        weight:"weightInput",
-        schedule:"scheduleInput",
-        sleep:"sleepInput",
-        budget:"budgetInput",
-        health:"healthInput",
-        restrictions:"restrictionInput",
-        energy:"energyInput"
-    };
-
-    for(const key in map){
-
-        const el=document.getElementById(map[key]);
-
-        if(el && state[key]) el.value=state[key];
-
-    }
-}
-
 
 function nextStep(){
 
-    saveStepValues();
+  if(currentStep<totalSteps){
+    currentStep++;
+    updateSteps();
+    window.scrollTo(0,0);
+  }
 
-    if(state.step<steps.length-1){
+}
 
-        state.step++;
-        renderStep();
+function toggleChoice(el,type){
 
-    }else{
+  el.classList.toggle("selected");
 
-        finishOnboarding();
+}
 
+function selectSingle(el,type){
+
+  document.querySelectorAll(".choice").forEach(c=>{
+    if(c.parentElement===el.parentElement){
+      c.classList.remove("selected");
     }
+  });
+
+  el.classList.add("selected");
+
 }
 
+function selectMood(el,mood){
 
-function previousStep(){
+  document.querySelectorAll(".moodBtn").forEach(b=>{
+    b.classList.remove("selected");
+  });
 
-    saveStepValues();
+  el.classList.add("selected");
+  state.mood=mood;
 
-    if(state.step>0){
-        state.step--;
-        renderStep();
-    }
 }
 
+function getSelected(type){
 
-function choose(el,key,value){
+  return [...document.querySelectorAll(`.choice.selected`)]
+    .map(x=>x.innerText.replace(/\n.*/,"").trim());
 
-    document.querySelectorAll(`[data-group="${key}"]`)
-        .forEach(x=>x.classList.remove("selected"));
-
-    el.parentElement.querySelectorAll(".choice")
-        .forEach(x=>{
-            if(x===el)x.classList.add("selected");
-        });
-
-    state[key]=value;
 }
-
-
-function toggleChip(el,key){
-
-    el.classList.toggle("selected");
-
-    const text=el.innerText;
-
-    if(!state[key])state[key]=[];
-
-    if(el.classList.contains("selected")){
-
-        if(!state[key].includes(text))
-            state[key].push(text);
-
-    }else{
-
-        state[key]=state[key].filter(x=>x!==text);
-
-    }
-}
-
 
 function finishOnboarding(){
 
-    saveStepValues();
+  const selectedGoals=getSelected("goals");
+  const selectedDislikes=getSelected("dislikes");
 
-    if(!state.name)state.name="Friend";
-    if(!state.goal)state.goal="Feel healthier";
+  profile={
+    name:document.getElementById("name").value || "there",
+    age:document.getElementById("age").value || "",
+    height:document.getElementById("height").value || "",
+    weight:document.getElementById("weight").value || "",
+    fitness:document.getElementById("fitness").value,
+    goals:selectedGoals,
+    schedule:document.getElementById("schedule").value,
+    sleep:document.getElementById("sleep").value,
+    exerciseTime:document.getElementById("exerciseTime").value,
+    diet:document.getElementById("diet").value,
+    cooking:document.getElementById("cooking").value,
+    budget:document.getElementById("budget").value,
+    homeFoods:document.getElementById("homeFoods").value,
+    allergies:document.getElementById("allergies").value,
+    injuries:document.getElementById("injuries").value,
+    medical:document.getElementById("medical").value,
+    dislikes:selectedDislikes,
+    motivation:document.querySelector('[data-step="8"] .choice.selected')?.innerText || "",
+    mood:state.mood,
+    todayNote:document.getElementById("todayNote").value
+  };
 
-    localStorage.setItem("healthProfile",JSON.stringify(state));
+  localStorage.setItem("healthProfileV2",JSON.stringify(profile));
 
-    document.getElementById("onboarding").classList.add("hidden");
-    document.getElementById("mainApp").classList.remove("hidden");
-    document.getElementById("nav").classList.remove("hidden");
+  document.getElementById("onboarding").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
 
-    loadDashboard();
+  updateDashboard();
+}
 
-    showToast("Your coach is ready. 💗");
+
+/* ---------- DASHBOARD ---------- */
+
+function updateDashboard(){
+
+  const name=profile?.name || "there";
+
+  document.getElementById("greeting").innerText=
+    `Hey ${name} 👋`;
+
+  let title="Let's make today work for you.";
+  let text="Your plan should fit your life — not the other way around.";
+
+  if(profile?.mood==="great"){
+    title="You've got some energy today ✨";
+    text="Let's use it without turning a good day into a punishment workout.";
+  }
+
+  if(profile?.mood==="meh"){
+    title="A meh day is still a day.";
+    text="We don't need perfection. We just need the next useful thing.";
+  }
+
+  if(profile?.mood==="exhausted"){
+    title="You're running on empty.";
+    text="Today doesn't need a heroic workout. Recovery is part of the plan.";
+  }
+
+  if(profile?.mood==="stressed"){
+    title="Okay. Let's make today lighter.";
+    text="We'll reduce the friction instead of adding another task to your brain.";
+  }
+
+  if(profile?.mood==="unwell"){
+    title="Recovery mode is on 🤍";
+    text="No intense workout today. Let's focus on rest, fluids and what your body needs.";
+  }
+
+  document.getElementById("heroTitle").innerText=title;
+  document.getElementById("heroText").innerText=text;
+
+  let observation=
+    "You've already moved quite a bit today. A short walk later may be enough.";
+
+  if(profile?.mood==="exhausted"){
+    observation=
+      "Your current state matters more than completing an old plan. Easy movement or rest makes more sense today.";
+  }
+
+  if(profile?.mood==="unwell"){
+    observation=
+      "Your coach has switched the priority from performance to recovery.";
+  }
+
+  document.getElementById("coachObservation").innerText=observation;
+
+  document.getElementById("waterValue").innerText=state.water;
+  document.getElementById("points").innerText=state.points+" pts";
+
+  updateMemory();
 
 }
 
 
-/* =========================================================
-   DASHBOARD / ADAPTIVE ENGINE
-========================================================= */
+/* ---------- NAVIGATION ---------- */
 
-function loadDashboard(){
+function showScreen(id,button){
 
-    document.getElementById("userName").innerText=
-        "Hey "+state.name+"! 👋";
+  document.querySelectorAll(".screen").forEach(s=>{
+    s.classList.add("hidden");
+  });
 
-    const energy=state.energy || "3 - Okay";
+  document.getElementById(id).classList.remove("hidden");
 
-    let message=
-        "Your activity and sleep look reasonably balanced. "+
-        "You don't need to chase perfection today.";
+  document.querySelectorAll(".navBtn").forEach(b=>{
+    b.classList.remove("active");
+  });
 
-    let coach=
-        "You don't need a huge workout today. "+
-        "Let's start with a little movement and see how you feel.";
+  if(button) button.classList.add("active");
 
-    let status="● Doing well";
-    let score=78;
+  window.scrollTo(0,0);
+}
 
-    if(state.mood==="Sick"){
 
-        score=55;
-        status="● Recovery mode";
+/* ---------- NEED NOW ---------- */
 
-        message=
-            "You're not feeling well. Today is not the day to prove anything.";
+function needNow(type){
 
-        coach=
-            "I'm going to be honest: if you're sick, a hard workout isn't the priority. "+
-            "Rest, fluids and easy food come first. If you have concerning or worsening symptoms, "+
-            "seek appropriate medical care.";
+  let title="";
+  let html="";
 
-        document.getElementById("workoutSuggestion").innerText=
-            "No hard workout. Rest or gentle movement only if you feel comfortable.";
+  if(type==="hungry" || type==="food"){
 
-    }
+    title="Let's figure out food 🍴";
 
-    else if(state.mood==="Exhausted" || energy.startsWith("1") || energy.startsWith("2")){
+    html=`
+      <p class="small">
+        Don't just tell me "eat healthy." Tell me what you have and I'll work from that.
+      </p>
 
-        score=61;
-        status="● Take it easier";
+      <div class="field">
+        <label>What's available right now?</label>
+        <textarea id="quickIngredients" placeholder="Potatoes, eggs, bread, rice, dal..."></textarea>
+      </div>
 
-        message=
-            "Your energy is low. That doesn't mean you failed—it means today's plan needs to change.";
+      <div class="field">
+        <label>How hungry are you?</label>
+        <select id="hunger">
+          <option>Just a little hungry</option>
+          <option>Properly hungry</option>
+          <option>Very hungry</option>
+        </select>
+      </div>
 
-        coach=
-            "Honestly? I don't think today needs a heroic workout. "+
-            "Let's do 5–15 minutes of easy movement, then reassess. "+
-            "If you're genuinely exhausted, resting is a valid choice.";
+      <button class="primary" onclick="quickMeal()">Build my options</button>
+    `;
 
-        document.getElementById("workoutSuggestion").innerText=
-            "5–15 minutes easy movement + mobility, or a full recovery day.";
+  }
 
-    }
+  else if(type==="move"){
 
-    else if(state.mood==="Low"){
+    title="Let's move 🏃";
 
-        score=64;
-        status="● Gentle day";
+    html=`
+      <p class="small">
+        How much time do you actually have?
+      </p>
 
-        message=
-            "You're having a rougher day. The goal is to keep the habit alive without adding pressure.";
+      <div class="choiceGrid">
+        <button class="choice" onclick="showToast('Try a 5-minute mobility flow.')">5 min</button>
+        <button class="choice" onclick="showToast('Try a 10-minute walk + mobility.')">10 min</button>
+        <button class="choice" onclick="showToast('Try a 20-minute adaptive workout.')">20 min</button>
+        <button class="choice" onclick="showToast('You can do a full session if recovery supports it.')">30+ min</button>
+      </div>
+    `;
 
-        coach=
-            "Let's lower the bar. Drink some water, eat something simple, and move for 5 minutes if you want. "+
-            "You don't need to turn a bad day into a productivity competition.";
+  }
 
-    }
+  else if(type==="exhausted"){
 
-    else if(state.mode==="busy"){
+    title="You're exhausted 🥱";
 
-        message=
-            "You're busy today. I'm shrinking the plan instead of pretending you have unlimited time.";
+    html=`
+      <p>
+        If you're genuinely exhausted, I'm not going to pretend a hard workout is automatically the answer.
+      </p>
+      <p class="small">
+        Try water, food if you haven't eaten, a short easy walk or stretch if it feels good,
+        and prioritize sleep.
+      </p>
+      <button class="secondary" onclick="closeModal('actionModal')">Okay, recovery first.</button>
+    `;
 
-        coach=
-            "You told me you're busy, so I'm not giving you a 60-minute workout. "+
-            "Give me 10 minutes. That's enough to keep momentum.";
+  }
 
-    }
+  else if(type==="stressed"){
 
-    document.getElementById("score").innerText=score;
-    document.getElementById("status").innerText=status;
-    document.getElementById("healthMessage").innerText=message;
-    document.getElementById("coachMessage").innerText=coach;
-    document.getElementById("points").innerText=state.points+" points";
+    title="Let's lower the pressure 🫠";
+
+    html=`
+      <p>
+        Forget the giant checklist for a minute.
+      </p>
+
+      <div class="foodOption">
+        <strong>1. Drink some water</strong>
+        <p>Something concrete and easy.</p>
+      </div>
+
+      <div class="foodOption">
+        <strong>2. Take 2 minutes</strong>
+        <p>Slow breathing, sit down, step outside — whichever actually helps you.</p>
+      </div>
+
+      <div class="foodOption">
+        <strong>3. Pick one next thing</strong>
+        <p>Not ten. One.</p>
+      </div>
+    `;
+
+  }
+
+  else if(type==="sick"){
+
+    title="Recovery mode 🤍";
+
+    html=`
+      <p>
+        Let's pause intense exercise for now.
+      </p>
+
+      <div class="foodOption">
+        <strong>💧 Fluids</strong>
+        <p>Drink according to your needs and any medical advice you have.</p>
+      </div>
+
+      <div class="foodOption">
+        <strong>🍲 Easy food</strong>
+        <p>Choose something simple that you tolerate well.</p>
+      </div>
+
+      <div class="foodOption">
+        <strong>😴 Rest</strong>
+        <p>Your body doesn't owe us a workout today.</p>
+      </div>
+
+      <p class="small">
+        If symptoms are severe, worsening, or concerning, seek appropriate medical care.
+      </p>
+    `;
+
+  }
+
+  else if(type==="motivation"){
+
+    title="Okay. Honest mode. 😈";
+
+    html=`
+      <p>
+        If you're avoiding a workout because you genuinely need rest, I'll support rest.
+        If you're just procrastinating... I might call you out a little.
+      </p>
+
+      <button class="primary" onclick="showToast('Put on your shoes. Just start for 5 minutes. Then decide. 😌')">
+        Fine. Give me 5 minutes.
+      </button>
+    `;
+
+  }
+
+  else if(type==="talk"){
+
+    closeModal("actionModal");
+    showScreen("coach",document.querySelectorAll(".navBtn")[4]);
+
+    setTimeout(()=>{
+      document.getElementById("chatInput").focus();
+    },200);
+
+    return;
+  }
+
+  document.getElementById("actionContent").innerHTML=html;
+
+  openModal("actionModal");
 
 }
 
 
-/* =========================================================
-   MODES
-========================================================= */
+/* ---------- QUICK FOOD ---------- */
 
-function setMode(mode,el){
+function quickMeal(){
 
-    state.mode=mode;
+  const ingredients=document.getElementById("quickIngredients")?.value || "";
 
-    document.querySelectorAll(".mode")
-        .forEach(x=>x.classList.remove("active"));
+  closeModal("actionModal");
 
-    el.classList.add("active");
+  showScreen("food",document.querySelectorAll(".navBtn")[2]);
 
-    if(mode==="sick"){
+  document.getElementById("ingredients").value=ingredients;
 
-        state.mood="Sick";
+  makeMeal();
+}
 
-    }
 
-    if(mode==="low"){
+/* ---------- MEAL ENGINE ---------- */
 
-        state.mood="Low";
+function makeMeal(){
 
-    }
+  const raw=(document.getElementById("ingredients").value || "").toLowerCase();
 
-    loadDashboard();
+  const has=(word)=>raw.includes(word);
 
-    showToast(
-        mode==="sick" ?
-        "Recovery mode activated 🤍" :
-        mode==="low" ?
-        "Gentle mode activated 🌿" :
-        mode==="busy" ?
-        "Okay, we're making this fit your schedule." :
-        "Plan updated ✨"
-    );
+  let options=[];
+
+  if(has("potato") && (has("egg") || profile?.diet==="Eggitarian")){
+    options.push({
+      title:"🥔 Potato + egg bowl",
+      text:"Boil or pan-cook the potato, add eggs and season it. Add curd or vegetables if available."
+    });
+  }
+
+  if(has("bread")){
+    options.push({
+      title:"🍞 Simple loaded toast",
+      text:"Use bread with eggs, curd-based spread, vegetables or another protein you already have."
+    });
+  }
+
+  if(has("rice") && has("dal")){
+    options.push({
+      title:"🍚 Dal-rice bowl",
+      text:"A simple dal + rice meal can absolutely be a normal dinner. Add vegetables or curd if available."
+    });
+  }
+
+  if(has("roti") || has("chapati")){
+    options.push({
+      title:"🌯 Roti roll",
+      text:"Fill roti with whatever protein/vegetables you have. Keep it simple."
+    });
+  }
+
+  if(options.length===0){
+
+    options=[
+      {
+        title:"🍲 Simple balanced bowl",
+        text:"Pick a carbohydrate you have + a protein source + something colourful/vegetable if available."
+      },
+      {
+        title:"🥣 Easy dinner",
+        text:"If you're tired, choose the easiest meal you can actually make rather than skipping dinner because it isn't 'perfect'."
+      }
+    ];
+
+  }
+
+  document.getElementById("mealResult").innerHTML=`
+    <div class="card">
+      <div class="cardTitle">Here are options based on what you gave me 👇</div>
+      <p class="small">
+        Based on your ${profile?.diet || "diet"} preference and your available ingredients.
+      </p>
+
+      <div class="foodOptions">
+        ${options.map(o=>`
+          <div class="foodOption">
+            <strong>${o.title}</strong>
+            <p>${o.text}</p>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
 
 }
 
 
-/* =========================================================
-   HYDRATION
-========================================================= */
+/* ---------- FOOD LOG ---------- */
+
+function logFood(){
+
+  const food=document.getElementById("foodLog").value.trim();
+
+  if(!food){
+    showToast("Tell me what you ate first 🍴");
+    return;
+  }
+
+  document.getElementById("foodLog").value="";
+
+  showToast("Logged. No moral score attached 😂");
+
+}
+
+
+/* ---------- WATER ---------- */
 
 function addWater(){
 
-    if(state.water<8){
+  state.water=Math.min(12,state.water+1);
 
-        state.water++;
+  state.points+=5;
 
-        document.getElementById("water").innerText=state.water;
+  updateDashboard();
 
-        if(state.water===8){
+  showToast("Water logged 💧 +5 points");
 
-            state.points+=20;
+}
 
-            document.getElementById("points").innerText=
-                state.points+" points";
 
-            showToast("Hydration goal reached! +20 points 💧");
+/* ---------- COACH MEMORY ---------- */
 
-        }else{
+function updateMemory(){
 
-            showToast("Water logged 💧");
+  if(!profile) return;
 
-        }
+  const goals=(profile.goals||[]).slice(0,3).join(", ") || "not set";
 
-    }else{
+  document.getElementById("memorySummary").innerText=
+    `Goal focus: ${goals}. Diet: ${profile.diet || "not set"}. `+
+    `Exercise reality: ${profile.exerciseTime || "not set"}. `+
+    `Motivation: ${profile.motivation || "not set"}. `+
+    `Things you dislike: ${(profile.dislikes||[]).join(", ") || "none selected"}.`;
 
-        showToast("You've hit today's demo target 💧");
+  document.getElementById("profileDetails").innerHTML=`
 
+    <div class="foodOption">
+      <strong>👤 ${profile.name}</strong>
+      <p>${profile.age ? profile.age+" years old" : "Age not set"}</p>
+    </div>
+
+    <div class="foodOption">
+      <strong>🎯 Goals</strong>
+      <p>${(profile.goals||[]).join(", ") || "Not set"}</p>
+    </div>
+
+    <div class="foodOption">
+      <strong>🍴 Food</strong>
+      <p>${profile.diet || "Not set"} · ${profile.budget || ""}</p>
+    </div>
+
+    <div class="foodOption">
+      <strong>🏠 Reality</strong>
+      <p>${profile.exerciseTime || "Not set"} · ${profile.sleep || ""}</p>
+    </div>
+
+    <div class="foodOption">
+      <strong>🚫 Avoid</strong>
+      <p>${(profile.dislikes||[]).join(", ") || "Nothing selected"}</p>
+    </div>
+
+    <div class="foodOption">
+      <strong>📝 Today</strong>
+      <p>${profile.todayNote || "Nothing added."}</p>
+    </div>
+  `;
+
+}
+
+
+/* =========================================================
+   SAFETY LAYER
+   This is separate from conversational responses.
+========================================================= */
+
+function safetyCheck(message){
+
+  const text=message.toLowerCase();
+
+  const concerning=[
+    "chest pain",
+    "fainting",
+    "passed out",
+    "severe difficulty breathing",
+    "can't breathe",
+    "suicidal",
+    "kill myself"
+  ];
+
+  if(concerning.some(x=>text.includes(x))){
+    return {
+      urgent:true,
+      text:
+      "That sounds like something that shouldn't be handled by a fitness coach. " +
+      "Please seek appropriate urgent medical or emergency support for the situation you're describing."
+    };
+  }
+
+  return {
+    urgent:false
+  };
+
+}
+
+
+/* =========================================================
+   CONVERSATION ENGINE
+   Much more contextual than the original keyword fallback.
+========================================================= */
+
+function coachReply(message){
+
+  const text=message.toLowerCase();
+
+  const safety=safetyCheck(message);
+
+  if(safety.urgent){
+    return safety.text;
+  }
+
+
+  /* ---------- FOOD / DINNER ---------- */
+
+  if(
+    text.includes("eat tonight") ||
+    text.includes("eat at night") ||
+    text.includes("dinner") ||
+    text.includes("what should i eat") ||
+    text.includes("what can i eat") ||
+    text.includes("hungry")
+  ){
+
+    const foods=profile?.homeFoods || "";
+
+    let base=
+      "Yes — but I don't want to throw a random 'healthy dinner' at you. ";
+
+    if(foods){
+      base+=`You told me you usually have ${foods}. `;
     }
 
-}
-
-
-/* =========================================================
-   PLAN
-========================================================= */
-
-function showPlan(){
-
-    let html="";
-
-    if(state.mode==="sick" || state.mood==="Sick"){
-
-        html=`
-            <h2>Your plan today 🤍</h2>
-
-            <div class="plan-item">
-                <strong>1. Recovery first</strong>
-                <p class="small">Rest and keep activity gentle if you feel up to it.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>2. Hydrate</strong>
-                <p class="small">Drink regularly according to your needs.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>3. Eat something easy</strong>
-                <p class="small">Choose food that feels manageable rather than restricting.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>4. No compensation tomorrow</strong>
-                <p class="small">You don't need to punish yourself for resting.</p>
-            </div>
-        `;
-
-    }else if(state.mood==="Low" || state.mood==="Exhausted"){
-
-        html=`
-            <h2>Your plan today 🌿</h2>
-
-            <div class="plan-item">
-                <strong>1. Drink some water</strong>
-                <p class="small">Small first step.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>2. Move for 5 minutes</strong>
-                <p class="small">Walk, stretch or do whatever feels manageable.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>3. Eat a proper meal</strong>
-                <p class="small">Don't turn a difficult day into a restriction day.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>4. Reassess later</strong>
-                <p class="small">Your plan can change again.</p>
-            </div>
-        `;
-
-    }else{
-
-        html=`
-            <h2>Your next move ✨</h2>
-
-            <div class="plan-item">
-                <strong>🚶 15-minute walk</strong>
-                <p class="small">Easy-to-moderate pace. No need to destroy yourself.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>💧 Drink one glass of water</strong>
-                <p class="small">You're currently at ${state.water}/8 in this demo.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>🍎 Eat normally</strong>
-                <p class="small">We'll adapt food recommendations to your actual situation.</p>
-            </div>
-
-            <div class="plan-item">
-                <strong>🧠 Check in later</strong>
-                <p class="small">If your energy changes, the plan changes.</p>
-            </div>
-        `;
-
+    if(profile?.diet){
+      base+=`You're following a ${profile.diet.toLowerCase()} diet, so I'll keep that in mind. `;
     }
 
-    openModal(html);
-
-}
-
-
-/* =========================================================
-   WHY
-========================================================= */
-
-function openWhy(){
-
-    openModal(`
-        <button class="close" onclick="closeModal()">×</button>
-        <h2>Why am I recommending this?</h2>
-
-        <p style="margin-top:13px;font-size:14px">
-        The idea is simple:
-        <strong>the plan should fit the person.</strong>
-        </p>
-
-        <div class="plan-item">
-            <strong>🧠 Your context</strong>
-            <p class="small">
-            Goals, preferences, schedule, mood and energy matter.
-            </p>
-        </div>
-
-        <div class="plan-item">
-            <strong>📊 Your data</strong>
-            <p class="small">
-            In the full app, device and health data can be used where available.
-            </p>
-        </div>
-
-        <div class="plan-item">
-            <strong>🔄 Your history</strong>
-            <p class="small">
-            The coach can learn patterns rather than treating every day as identical.
-            </p>
-        </div>
-
-        <div class="plan-item">
-            <strong>🛡️ Safety first</strong>
-            <p class="small">
-            Safety rules should remain separate from the conversational AI.
-            </p>
-        </div>
-    `);
-
-}
-
-
-/* =========================================================
-   WORKOUT
-========================================================= */
-
-function showWorkout(){
-
-    let workout;
-
-    if(state.mood==="Sick" || state.mode==="sick"){
-
-        workout="No intense workout today. Rest or gentle movement only if comfortable.";
-
-    }else if(state.mood==="Low" || state.mood==="Exhausted"){
-
-        workout="5 minutes: gentle walk → shoulder rolls → easy stretching → done.";
-
-    }else if(state.dislikes.includes("🏃 Running")){
-
-        workout="15 minutes: brisk walk → bodyweight squats → wall push-ups → mobility. No running.";
-
-    }else{
-
-        workout="20 minutes: 5-minute warm-up → 10-minute full-body circuit → 5-minute cool-down.";
-
+    if(profile?.budget==="Very budget-friendly"){
+      base+="I'll keep it budget-friendly too. ";
     }
 
-    openModal(`
-        <button class="close" onclick="closeModal()">×</button>
-        <h2>Today's workout 🏃</h2>
-        <p style="margin-top:13px;font-size:14px">${workout}</p>
-        <div class="why" style="margin-top:15px">
-        This is a prototype. A real version would use your recovery,
-        previous performance, injuries, equipment and preferences to
-        generate and adjust workouts.
-        </div>
-    `);
+    base+="Tell me what you actually have available tonight and how hungry you are, and I'll give you 2–3 realistic options.";
 
-}
+    return base;
+  }
 
 
-/* =========================================================
-   FOOD
-========================================================= */
+  /* ---------- INGREDIENT QUESTION ---------- */
 
-function mealIdea(){
+  if(
+    text.includes("potato") ||
+    text.includes("bread") ||
+    text.includes("egg") ||
+    text.includes("rice") ||
+    text.includes("roti")
+  ){
 
-    const ingredients=
-        document.getElementById("ingredients").value.trim();
+    return `
+      I can work with that 😌. Tell me the rest of the ingredients you have,
+      and whether you want something light, normal or very filling.
+      I'll build the meal around your actual kitchen rather than giving you a generic recipe.
+    `;
+  }
 
-    if(!ingredients){
 
-        showToast("Tell me what's in your kitchen first 😂");
-        return;
+  /* ---------- TOO MUCH FOOD ---------- */
 
+  if(
+    text.includes("ate too much") ||
+    text.includes("overeaten") ||
+    text.includes("overate") ||
+    text.includes("feel guilty") ||
+    text.includes("guilty after eating")
+  ){
+
+    return `
+      Hey. You ate more than you intended. That's information, not a moral failure.
+      Don't try to "fix" it by starving yourself or doing a punishment workout tomorrow.
+      We can just return to your normal routine at the next meal.
+    `;
+  }
+
+
+  /* ---------- PIZZA ---------- */
+
+  if(text.includes("pizza")){
+
+    return `
+      Pizza happened. The world survived 😂.
+      You don't need to compensate for it tomorrow.
+      If you're still hungry later, eat normally. If you're full, you're allowed to just be done.
+    `;
+  }
+
+
+  /* ---------- CHOCOLATE ---------- */
+
+  if(text.includes("chocolate") || text.includes("sweet")){
+
+    return `
+      Chocolate isn't automatically a problem.
+      If you want some, let's treat it like food — not a crime scene 😂.
+      Your overall pattern matters much more than one treat.
+    `;
+  }
+
+
+  /* ---------- WORKOUT + TIRED ---------- */
+
+  if(
+    (text.includes("workout") || text.includes("exercise")) &&
+    (
+      text.includes("tired") ||
+      text.includes("exhausted") ||
+      text.includes("sleep")
+    )
+  ){
+
+    if(profile?.mood==="exhausted"){
+      return `
+        Given that you told me you're exhausted today, I wouldn't push a hard workout.
+        Try 5–10 minutes of easy movement if it feels good, or take the recovery day.
+        Your plan is supposed to adapt when your body changes.
+      `;
     }
 
-    openModal(`
-        <button class="close" onclick="closeModal()">×</button>
-        <h2>Okay, kitchen detective mode 🕵️</h2>
+    return `
+      Before I give you a workout: how much did you sleep and how tired are you actually feeling?
+      If you're genuinely depleted, I'd rather reduce the session than pretend motivation fixes recovery.
+    `;
+  }
 
-        <p style="margin-top:12px;font-size:14px">
-        You have: <strong>${ingredients}</strong>
-        </p>
 
-        <div class="plan-item">
-            <strong>My prototype suggestion</strong>
-            <p class="small">
-            Build something simple around the ingredients you have,
-            adding a protein source and vegetables/fruit where practical.
-            </p>
-        </div>
+  /* ---------- SHORT WORKOUT ---------- */
 
-        <div class="why">
-        In the full AI version, you could ask:
-        “What can I make with these?” and get multiple culturally relevant,
-        budget-aware options.
-        </div>
-    `);
+  if(
+    text.includes("10 minute") ||
+    text.includes("10-minute") ||
+    text.includes("quick workout") ||
+    text.includes("short workout")
+  ){
+
+    return `
+      Try this 10-minute version:
+      <br><br>
+      2 min easy warm-up → 3 min squats/hinge + wall or incline push-ups →
+      2 min alternating lunges or marching → 2 min core/mobility →
+      1 min easy cool-down.
+      <br><br>
+      If anything hurts rather than simply feeling challenging, stop and switch the movement.
+    `;
+  }
+
+
+  /* ---------- LAZY / DON'T FEEL LIKE IT ---------- */
+
+  if(
+    text.includes("lazy") ||
+    text.includes("don't feel like exercising") ||
+    text.includes("dont feel like exercising")
+  ){
+
+    return `
+      Okay, but I need to know which kind of "don't feel like it" this is 😂.
+      <br><br>
+      If you're exhausted → rest.
+      If you're stressed → make it tiny.
+      If you're just avoiding starting → give me five minutes.
+      <br><br>
+      You don't need to promise a whole workout. Just start.
+    `;
+  }
+
+
+  /* ---------- SAD / LOW MOOD ---------- */
+
+  if(
+    text.includes("sad") ||
+    text.includes("cry") ||
+    text.includes("bad day") ||
+    text.includes("disgusting")
+  ){
+
+    return `
+      I'm listening.
+      You don't need to turn this feeling into a productivity project right now.
+      Tell me what happened — I'll respond to what you're actually saying rather than immediately throwing a workout or calorie target at you.
+    `;
+  }
+
+
+  /* ---------- WHY ---------- */
+
+  if(text.includes("why")){
+
+    return `
+      Because context changes the answer.
+      The same question can have a different answer depending on your sleep,
+      food, activity, goals, health restrictions, schedule and how you're feeling today.
+      That's the whole point of this coach.
+    `;
+  }
+
+
+  /* ---------- SICK ---------- */
+
+  if(
+    text.includes("sick") ||
+    text.includes("fever") ||
+    text.includes("flu") ||
+    text.includes("weak")
+  ){
+
+    return `
+      If you're sick or feeling unusually weak, let's switch the goal from performance to recovery.
+      Skip intense training for now, prioritize rest and fluids, and eat something you tolerate well.
+      If symptoms are severe, worsening or concerning, get medical advice rather than relying on me.
+    `;
+  }
+
+
+  /* ---------- BORED / RANDOM ---------- */
+
+  if(text.includes("bored")){
+
+    return `
+      Honestly? We could do a tiny movement challenge, invent a ridiculous healthy dinner,
+      talk nonsense, or you can tell me what you're procrastinating 😂.
+      Your choice.
+    `;
+  }
+
+
+  /* ---------- CALORIES ---------- */
+
+  if(
+    text.includes("calorie") ||
+    text.includes("calories")
+  ){
+
+    return `
+      I can estimate calories, but I don't want a number to become the only thing you see.
+      For a useful estimate I'd need the actual food, portion and preparation.
+      In the full version, the food engine can combine that with your goals and activity.
+    `;
+  }
+
+
+  /* ---------- GENERIC BUT PERSONAL ---------- */
+
+  let name=profile?.name || "";
+
+  return `
+    ${name ? name+", " : ""}
+    I get what you're asking, but I don't want to fake an answer just to sound helpful 😂.
+    Give me a little more context — what happened, what you have available,
+    how you're feeling, or what you're trying to decide — and I'll work it out with you.
+  `;
 
 }
 
 
-/* =========================================================
-   REWARDS
-========================================================= */
-
-function redeem(name,cost){
-
-    if(state.points<cost){
-
-        showToast("Not enough points yet 😭");
-        return;
-
-    }
-
-    state.points-=cost;
-
-    document.getElementById("points").innerText=
-        state.points+" points";
-
-    showToast(name+" unlocked 🎁");
-
-}
-
-
-/* =========================================================
-   CHAT
-========================================================= */
-
-function openCoach(){
-
-    showPage("coach");
-
-}
-
-
-function sendMessage(){
-
-    const input=document.getElementById("chatInput");
-
-    const text=input.value.trim();
-
-    if(!text)return;
-
-    addMessage(text,"user");
-
-    input.value="";
-
-    setTimeout(()=>{
-
-        addMessage(generateCoachReply(text),"coach");
-
-    },450);
-
-}
-
+/* ---------- CHAT ---------- */
 
 function addMessage(text,type){
 
-    const box=document.getElementById("chatMessages");
+  const box=document.getElementById("chatBox");
 
-    const div=document.createElement("div");
+  const row=document.createElement("div");
 
-    div.className="message "+type;
+  row.className="message "+type;
 
-    div.innerText=text;
+  if(type==="coach"){
 
-    box.appendChild(div);
+    row.innerHTML=`
+      <div class="coachAvatar">💗</div>
+      <div class="bubble">${text}</div>
+    `;
 
-    box.scrollTop=box.scrollHeight;
+  }else{
+
+    row.innerHTML=`
+      <div class="bubble">${text}</div>
+    `;
+
+  }
+
+  box.appendChild(row);
+
+  box.scrollTop=box.scrollHeight;
+
+}
+
+function sendChat(){
+
+  const input=document.getElementById("chatInput");
+
+  const message=input.value.trim();
+
+  if(!message) return;
+
+  addMessage(message,"user");
+
+  input.value="";
+
+  setTimeout(()=>{
+    addMessage(coachReply(message),"coach");
+  },350);
+
+}
+
+function quickChat(text){
+
+  showScreen("coach",document.querySelectorAll(".navBtn")[4]);
+
+  addMessage(text,"user");
+
+  setTimeout(()=>{
+    addMessage(coachReply(text),"coach");
+  },300);
 
 }
 
 
-function generateCoachReply(text){
+/* ---------- MODALS ---------- */
 
-    const t=text.toLowerCase();
+function openModal(id){
 
-    if(t.includes("pizza")){
+  document.getElementById(id).classList.remove("hidden");
 
-        return "You ate pizza. 😂 You did not destroy your progress. Don't compensate by starving tomorrow or doing hours of cardio. Just get back to your normal routine.";
+  if(id==="profileModal"){
+    updateMemory();
+  }
 
-    }
+}
 
-    if(t.includes("chocolate")){
+function closeModal(id){
 
-        return "Yes, you can ask me about chocolate without me calling the police. 😂 Food doesn't need to be morally good or bad. Your overall eating pattern matters more than one treat.";
-
-    }
-
-    if(t.includes("maggi")){
-
-        return "You can eat Maggi. 😂 If you're hungry, let's make the meal more filling—maybe add vegetables, eggs or another protein source if those work for you.";
-
-    }
-
-    if(t.includes("workout") && (t.includes("tired") || t.includes("sleep") || t.includes("4 hour"))){
-
-        return "I'd be cautious with a hard workout when you're severely sleep-deprived. If you're otherwise okay, keep movement easy and reassess. If you're dizzy, faint, unusually weak or unwell, stop.";
-
-    }
-
-    if(t.includes("lazy")){
-
-        return "Maybe you're lazy today. Or maybe you're exhausted. Those aren't the same thing. 😂 Tell me: if I offered you a five-minute version, would you still refuse?";
-
-    }
-
-    if(t.includes("cry") || t.includes("sad")){
-
-        return "I'm listening. You don't have to turn every bad feeling into a productivity problem. Tell me what's actually going on, and we'll figure out what you need right now.";
-
-    }
-
-    if(t.includes("bored")){
-
-        return "Okay, health coach temporarily off duty 😂. Want a random challenge, a stupid question, a mini walk, or something completely unrelated?";
-
-    }
-
-    if(t.includes("why")){
-
-        return "Fair question. 😂 Give me the exact thing you're questioning and I'll explain the reasoning instead of just telling you to trust me.";
-
-    }
-
-    if(t.includes("hate")){
-
-        return "Then tell me what you hate about it. I don't want to keep giving you the same recommendation while pretending your preferences don't exist.";
-
-    }
-
-    if(t.includes("calorie")){
-
-        return "Calories can be useful information, but I don't want them to become a punishment system. A real version would consider your goals, activity, nutrition and health context together.";
-
-    }
-
-    return "Okay, tell me more. I'm not going to give you a motivational quote just because I don't know what to say 😂. What's actually going on?";
+  document.getElementById(id).classList.add("hidden");
 
 }
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* ---------- TOAST ---------- */
 
-function showPage(page){
+function showToast(message){
 
-    const pages={
-        today:"todayPage",
-        progress:"progressPage",
-        food:"foodPage",
-        activity:"activityPage",
-        rewards:"rewardsPage",
-        coach:"coachPage"
-    };
+  const toast=document.getElementById("toast");
 
-    Object.values(pages).forEach(id=>{
-        document.getElementById(id).classList.add("hidden");
-    });
+  toast.innerText=message;
 
-    document.getElementById(pages[page]).classList.remove("hidden");
+  toast.style.opacity="1";
 
-    const navButtons=document.querySelectorAll(".nav button");
-
-    navButtons.forEach(x=>x.classList.remove("active"));
-
-    const index={
-        today:0,
-        progress:1,
-        food:2,
-        activity:3,
-        coach:4
-    }[page];
-
-    if(index!==undefined)navButtons[index].classList.add("active");
+  setTimeout(()=>{
+    toast.style.opacity="0";
+  },2200);
 
 }
 
 
-/* =========================================================
-   MODALS / UI
-========================================================= */
+/* ---------- INITIALIZE ---------- */
 
-function openModal(html){
-
-    document.getElementById("modalContent").innerHTML=html;
-    document.getElementById("modalBg").classList.remove("hidden");
-
-}
+document.getElementById("chatInput").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){
+    sendChat();
+  }
+});
 
 
-function closeModal(event){
+initOnboarding();
 
-    if(!event || event.target.id==="modalBg"){
-
-        document.getElementById("modalBg").classList.add("hidden");
-
-    }
-
-}
-
-
-function showToast(text){
-
-    const toast=document.getElementById("toast");
-
-    toast.innerText=text;
-    toast.classList.add("show");
-
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },2200);
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
 
 if(profile){
 
-    state={...state,...profile};
+  document.getElementById("onboarding").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
 
-    document.getElementById("onboarding").classList.add("hidden");
-    document.getElementById("mainApp").classList.remove("hidden");
-    document.getElementById("nav").classList.remove("hidden");
-
-    loadDashboard();
-
-}else{
-
-    renderStep();
+  updateDashboard();
 
 }
 
